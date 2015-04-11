@@ -1,0 +1,11 @@
+target/
+src/main/resources/public/bower_components
+.settings/
+.project
+/target/
+/target/
+/target/
+/target/
+/target/
+/target/
+/target/
