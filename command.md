@@ -1,5 +1,5 @@
 1 added bower.json
-2 bower install
+2 bower install...
 
 add .gitignore so that we won't commit bower_componets to github.mn
 
