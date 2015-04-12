@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="article")
 public class Article {
@@ -27,6 +29,9 @@ public class Article {
 	@Column(name="type", nullable=false, length=50)
 	private String type;
 	
+	@Column(name="category", length=200)
+	private String category;
+	
 	@Column(name="tag", length=200)
 	private String tag;
 	
@@ -39,8 +44,8 @@ public class Article {
 	@Column(name="is_published", length=1)
 	private String isPublished;
 	
-	@Column(name="thumbnail_url",length=200)
-	private String thumbnailUrl;
+	@Column(name="image_url",length=200)
+	private String imageUrl;
 	
 	@Column(name="date_created")
 	private Date dateCreated;
@@ -48,14 +53,44 @@ public class Article {
 	@Column(name="date_published")
 	private Date datePublished;
 	
-	@Column(name="modified_date")
-	private Date modifiedDate;
+	@Column(name="date_modified")
+	private Date dateModified;
 	
 	
-	@ManyToOne(optional=false, fetch=FetchType.LAZY)// 
+   
+    
+	@ManyToOne(optional=false, fetch=FetchType.EAGER)// 
 	@JoinColumn(name="author_id")
 	private Author author;
 	
+	
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+
+	public Date getDateModified() {
+		return dateModified;
+	}
+
+	public void setDateModified(Date dateModified) {
+		this.dateModified = dateModified;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+
 	
 	public long getArticleId() {
 		return articleId;
@@ -105,13 +140,6 @@ public class Article {
 		this.isPublished = isPublished;
 	}
 
-	public String getThumbnailUrl() {
-		return thumbnailUrl;
-	}
-
-	public void setThumbnailUrl(String thumbnailUrl) {
-		this.thumbnailUrl = thumbnailUrl;
-	}
 
 	public Date getDateCreated() {
 		return dateCreated;
@@ -129,13 +157,6 @@ public class Article {
 		this.datePublished = datePublished;
 	}
 
-	public Date getModifiedDate() {
-		return modifiedDate;
-	}
-
-	public void setModifiedDate(Date modifiedDate) {
-		this.modifiedDate = modifiedDate;
-	}
 
 
 	public Author getAuthor() {

@@ -27,7 +27,13 @@ public class ArticleDaoImpl extends HibernateDaoImpl<Article, Long> implements A
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> getCategoriesByType(String type){
+		Query query =getCurrentSession().createSQLQuery("select distinct category from article where type = :type");
+		query.setParameter("type", type);
+		return query.list();
+	}
 	
 	@Override
 	public Article find(Long i) {

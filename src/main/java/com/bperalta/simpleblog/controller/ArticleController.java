@@ -1,5 +1,6 @@
 package com.bperalta.simpleblog.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.bperalta.simpleblog.form.ArticleForm;
+import com.bperalta.simpleblog.data.Article;
 import com.bperalta.simpleblog.service.BlogService;
 
 
@@ -28,7 +29,7 @@ public class ArticleController {
 	private BlogService blogService;
 
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> save(@RequestBody ArticleForm article){
+	public ResponseEntity<Void> save(@RequestBody Article article){
 		logger.info("saving article...");
 		Long articleId = blogService.saveArticle(article);//must return the id
 		
@@ -45,9 +46,9 @@ public class ArticleController {
 	}
 	
 	@RequestMapping(value="{id}",method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@PathVariable("id") String id, @RequestBody ArticleForm articleForm){
+	public ResponseEntity<Void> update(@PathVariable("id") String id, @RequestBody Article article){
 		logger.info("update article with id"+id);
-		blogService.updateArticle(articleForm);
+		blogService.updateArticle(article);
 		HttpHeaders headers = new HttpHeaders();
 		//headers.setLocation(linkTo(ArticleController.class).slash);
 		headers.setLocation(ServletUriComponentsBuilder.fromCurrentRequest().build().toUri());
@@ -57,18 +58,19 @@ public class ArticleController {
 		return new ResponseEntity<Void>(null,headers,HttpStatus.OK);
 	}
 	
-	
+	//TODO implement pagenation
 	@RequestMapping(method=RequestMethod.GET)
-	public String getAll(){
+	public List<Article> getAll(){
+		List<Article> articles= blogService.getArticles("", 0, 0);
 		logger.info("get all articles");
-		return "";
+		return articles;
 	}
 	
 	@RequestMapping(value="{id}",method=RequestMethod.GET)
-	public ResponseEntity<ArticleForm> get(@PathVariable("id") Long id){
+	public ResponseEntity<Article> get(@PathVariable("id") Long id){
 		logger.info("get article by id:"+id);
-		ArticleForm form = blogService.findArticle(id);
-		return new ResponseEntity<ArticleForm>(form,HttpStatus.OK);
+		Article form = blogService.findArticle(id);
+		return new ResponseEntity<Article>(form,HttpStatus.OK);
 		
 	}
 	
@@ -80,22 +82,17 @@ public class ArticleController {
 	}
 	
 	@RequestMapping(value="search/type/{searchKey}",method=RequestMethod.GET)
-	public ResponseEntity<List<ArticleForm>> searchArticlesByType(@PathVariable("searchKey") String key){
+	public ResponseEntity<List<Article>> searchArticlesByType(@PathVariable("searchKey") String key){
 		logger.info("search articles by type:"+key);
-		List<ArticleForm> articleList = blogService.getArticlesByType(key);
+		List<Article> articleList = blogService.getArticlesByType(key);
 		articleList.forEach(article ->
 					logger.info("title"+article.getTitle())
 				);
-//		for(ArticleForm article:articleList){
-//			logger.info("title:"+article.getTitle());
-//				
-//		}
-//		
-		return new ResponseEntity<List<ArticleForm>>(articleList, HttpStatus.OK);
+		return new ResponseEntity<List<Article>>(articleList, HttpStatus.OK);
 	}
-	@RequestMapping(value="search/tag/{searchKey}",method=RequestMethod.GET)
-	public String searchArticlesByTag(@PathVariable("searchKey") String key){
-		logger.info("search articles by tag:"+key);
+	@RequestMapping(value="search/category/{searchKey}",method=RequestMethod.GET)
+	public String searchArticlesByCategory(@PathVariable("searchKey") String key){
+		logger.info("search articles by category:"+key);
 		return "searching by tag";
 	}
 	@RequestMapping(value="search/keyword/{searchKey}",method=RequestMethod.GET)
@@ -105,5 +102,13 @@ public class ArticleController {
 		
 		return "searching by keyword";
 	}
-	
+	@RequestMapping(value="{type}/categories", method=RequestMethod.GET)
+	public List<String> getAllCategories(@PathVariable("type") String type){
+		List<String> categoriesList = blogService.getCategoriesByType(type);
+		logger.info("type:" + type);
+		categoriesList.forEach(category ->
+		logger.info("category: "+category));
+		return categoriesList;
+		
+	}
 }

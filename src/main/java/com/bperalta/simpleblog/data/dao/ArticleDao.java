@@ -10,6 +10,7 @@ public interface ArticleDao extends BaseDao<Article, Long> {
 	
 	public List<Article> searchArticlesByTag(String tag);
 	
+	public List<String> getCategoriesByType(String type);
 	
  
 }

@@ -1,6 +1,5 @@
 package com.bperalta.simpleblog.data;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="login")
@@ -22,6 +23,8 @@ public class Login {
 	@Column(name="username", length=20, nullable=false)
 	private String username;
 	
+
+    @JsonIgnore
 	@Column(name="password", length=20,nullable=false)
 	private String password;
 	
@@ -31,8 +34,9 @@ public class Login {
 	@Column(name="is_banned", length=1,nullable=false)
 	private String isBanned;
 	
+
+    @JsonIgnore
 	@OneToOne(mappedBy="userLogin", targetEntity=Author.class, fetch=FetchType.LAZY)
-	
 	private Author author;
 	
 	

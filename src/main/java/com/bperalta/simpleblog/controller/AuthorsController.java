@@ -41,18 +41,20 @@ public class AuthorsController {
 		login.setIsActive("y");
 		login.setIsBanned("n");
 		login.setPassword("password");
-		login.setUsername("bars");
-		Login login2 = blogService.saveLogin(login);
+		login.setUsername("bars_cp");
+		blogService.saveLogin(login);
 		
 		
 		Author author = new Author();
-		author.setFirstName("Barry");
-		author.setLastName("Peralta");
-		author.setUserLogin(login2);
+		author.setFirstName("Kopi");
+		author.setLastName("C");
+		author.setUserLogin(login);
 		author.setEmail("bars_cp@yahoo.com");
-		Author author2 = blogService.saveAuthor(author);		
-		System.out.println("author"+author2.getFirstName());
-		return "init at get"+author2.getFirstName();
+	    blogService.saveAuthor(author);		
+		logger.info("init author id:"+author.getAuthorId());
+
+		logger.info("init login id:"+login.getLoginId());
+		return "init at get"+author.getFirstName();
 	}
 	
 	@RequestMapping(value="{id}",method=RequestMethod.GET)

@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="author")
 public class Author {
@@ -39,12 +41,13 @@ public class Author {
 	private String profileImgUrl;
 
 
-	
+
+    @JsonIgnore
 	@OneToOne(optional=true,fetch=FetchType.LAZY)
 	@JoinColumn(name="login_id")
 	private Login userLogin;
 	
-
+    @JsonIgnore
 	@OneToMany(mappedBy="author", targetEntity=Article.class, fetch=FetchType.LAZY)
 	private List<Article> articleList;	
 	
