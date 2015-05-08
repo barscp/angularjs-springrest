@@ -1,11 +1,5 @@
 target/
-src/main/resources/public/bower_components
+src/main/resources/public/assets/libs/bower_components
 .settings/
 .project
-/target/
-/target/
-/target/
-/target/
-/target/
-/target/
 /target/

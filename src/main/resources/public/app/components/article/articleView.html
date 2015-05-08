@@ -1,0 +1,10 @@
+
+<div ng-controller="ArticleController">
+	<div ng-if="editMode">
+		<div ng-include="'app/components/article/articleEditView.html'"></div>
+	</div>
+	<div ng-if="viewMode">
+		<div ng-include="'app/components/article/articleDisplayView.html'"></div>
+	</div>
+</div>
+

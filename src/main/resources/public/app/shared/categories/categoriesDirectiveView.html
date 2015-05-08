@@ -1,0 +1,13 @@
+<div class="panel panel-default" ng-show="categories.length">
+
+<div class="panel-body"> 
+<div class="panel-title">
+		Categories {{blogType}}
+	</div>
+<div ng-repeat="category in categories | orderBy: 'category'" >
+	<a ui-sref="blog({type:blogType,category:category.category,page:null})"> 
+	{{category.category}} <span class="badge">{{category.count}}</span> </a>
+	
+</div>
+</div>
+</div>

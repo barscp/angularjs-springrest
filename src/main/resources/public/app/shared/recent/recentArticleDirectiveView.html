@@ -1,0 +1,12 @@
+
+<div class="panel panel-default">
+<div class="panel-body">
+<div class="panel-title">
+		Recent Articles
+	</div>
+ 
+	<div ng-repeat="article in articles">
+		<a ui-sref="article({id:article.articleId, name:getArticleName(article.title)})">{{article.title}}</a>
+	</div>
+</div>
+</div>

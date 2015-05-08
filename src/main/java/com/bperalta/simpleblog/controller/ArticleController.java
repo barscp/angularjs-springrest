@@ -9,15 +9,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.bperalta.simpleblog.data.Article;
+import com.bperalta.simpleblog.data.entity.Article;
+import com.bperalta.simpleblog.data.entity.Author;
 import com.bperalta.simpleblog.service.BlogService;
+import com.bperalta.simpleblog.transfer.CategoryTransfer;
 
 
 @RestController
@@ -28,40 +33,12 @@ public class ArticleController {
 	@Autowired
 	private BlogService blogService;
 
-	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> save(@RequestBody Article article){
-		logger.info("saving article...");
-		Long articleId = blogService.saveArticle(article);//must return the id
-		
-		HttpHeaders headers = new HttpHeaders();
-		headers.setLocation(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(articleId).toUri());
-		headers.set("articleId", ""+articleId);
-		logger.info(headers.getLocation().toString());
-		return new ResponseEntity<Void>(null,headers,HttpStatus.CREATED);
-	}
-	
-	@RequestMapping(value="publish/{id}",method=RequestMethod.PATCH)
-	public String publish(@PathVariable("id") String id){
-		return "";
-	}
-	
-	@RequestMapping(value="{id}",method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@PathVariable("id") String id, @RequestBody Article article){
-		logger.info("update article with id"+id);
-		blogService.updateArticle(article);
-		HttpHeaders headers = new HttpHeaders();
-		//headers.setLocation(linkTo(ArticleController.class).slash);
-		headers.setLocation(ServletUriComponentsBuilder.fromCurrentRequest().build().toUri());
-		
-		headers.set("articleId", ""+id);
-		logger.info(headers.getLocation().toString());
-		return new ResponseEntity<Void>(null,headers,HttpStatus.OK);
-	}
+	private static final int PAGE_COUNT =5;
 	
 	//TODO implement pagenation
 	@RequestMapping(method=RequestMethod.GET)
-	public List<Article> getAll(){
-		List<Article> articles= blogService.getArticles("", 0, 0);
+	public List<Article> getRecentArticles(){
+		List<Article> articles= blogService.getArticles(1, 5);
 		logger.info("get all articles");
 		return articles;
 	}
@@ -69,46 +46,65 @@ public class ArticleController {
 	@RequestMapping(value="{id}",method=RequestMethod.GET)
 	public ResponseEntity<Article> get(@PathVariable("id") Long id){
 		logger.info("get article by id:"+id);
-		Article form = blogService.findArticle(id);
+		Article form = blogService.findArticle(id).get();
+		//blogService.findArticle(id).
+				//.orElseThrow(()->new ArticleNotFoundException(id));
+		
 		return new ResponseEntity<Article>(form,HttpStatus.OK);
 		
 	}
 	
-	@RequestMapping(value="{id}",method=RequestMethod.DELETE)
-	public String remove(@PathVariable("id") String id){
-		logger.info("Delete by article");
-
-		return "";
-	}
+    
+	@RequestMapping(value="search/{type}",method=RequestMethod.GET)
+	public ResponseEntity<List<Article>> searchArticlesByType(@PathVariable("type") String type,@RequestParam(value="category", required=false) String category, @RequestParam(value="page", required=false) int page){
+		logger.info("search articles by type:"+type);
+		logger.info("query paramter: "+category);
 	
-	@RequestMapping(value="search/type/{searchKey}",method=RequestMethod.GET)
-	public ResponseEntity<List<Article>> searchArticlesByType(@PathVariable("searchKey") String key){
-		logger.info("search articles by type:"+key);
-		List<Article> articleList = blogService.getArticlesByType(key);
-		articleList.forEach(article ->
-					logger.info("title"+article.getTitle())
-				);
-		return new ResponseEntity<List<Article>>(articleList, HttpStatus.OK);
-	}
-	@RequestMapping(value="search/category/{searchKey}",method=RequestMethod.GET)
-	public String searchArticlesByCategory(@PathVariable("searchKey") String key){
-		logger.info("search articles by category:"+key);
-		return "searching by tag";
-	}
-	@RequestMapping(value="search/keyword/{searchKey}",method=RequestMethod.GET)
-	public String searchArticlesByKeyword(@PathVariable("searchKey") String key){
-		//search by type?
-		logger.info("search articles by keyword:"+key);
+		List<Article> articleList = null;
+		if(page==0){
+			page=1;
+		}
+		int totalArticles =0;
+		if(StringUtils.isEmpty(category)){
+			articleList =blogService.getArticlesByType(type,page,PAGE_COUNT);
+			totalArticles=blogService.countArticles(type, null);
+			logger.info("count article:"+ totalArticles);
 		
-		return "searching by keyword";
+		}else{
+			articleList = blogService.getArticlesByTypeAndCategory(type, category, page,PAGE_COUNT) ;
+			totalArticles=blogService.countArticles(type, category);
+			logger.info("count article with category:"+ totalArticles);
+			
+		}
+		HttpHeaders headers = new HttpHeaders();
+		
+		headers.set("CountArticles", ""+totalArticles);
+		
+	
+		
+		return new ResponseEntity<List<Article>>(articleList,headers, HttpStatus.OK);
 	}
+
+
+
 	@RequestMapping(value="{type}/categories", method=RequestMethod.GET)
-	public List<String> getAllCategories(@PathVariable("type") String type){
-		List<String> categoriesList = blogService.getCategoriesByType(type);
-		logger.info("type:" + type);
-		categoriesList.forEach(category ->
-		logger.info("category: "+category));
+	public List<CategoryTransfer> getAllCategories(@PathVariable("type") String type){
+		List<CategoryTransfer> categoriesList = blogService.getCategoriesByType(type);
+		logger.info("getting categories for type:" + type);
+	
 		return categoriesList;
 		
 	}
+	
+
+	
+	@RequestMapping(value="author/{id}",method=RequestMethod.GET)
+	public ResponseEntity<Author> getAuthor(@PathVariable("id") Long authorId){
+		logger.info("getting author with id"+ authorId);
+		Author author = blogService.findAuthor(authorId);
+		return new ResponseEntity<Author>(author, HttpStatus.OK);
+	}
+	
+	
+
 }

@@ -1,0 +1,20 @@
+{
+  "name": "Simple blog",
+  "description": "Free tool for blogging",
+  "version": "0.0.0",
+  "homepage": "https://github.com/bperalta84/",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "1.4.x",
+    "angular-mocks": "1.4.x",
+    "jquery": "~2.1.1",
+    "bootstrap": "~3.2.0",
+    "angular-route": "1.4.x",
+    "angular-resource": "1.4.x",
+    "angular-animate": "1.4.x",
+    "angular-messages": "1.4.x",
+    "angular-ui-router": "0.x.x",
+    "angular-sanitize":"1.4.x"
+  }
+}

@@ -1,0 +1,20 @@
+<!-- will contain a list of short articles -->
+
+ <div class="row"  ng-repeat="article in articleList" >
+ 
+   <div class="col-md-12" >
+   	 <div my-article-thumbnail 
+  	 	article-id="{{article.articleId}}"
+  	 	title="{{article.title}}" 
+  	 	date="{{article.dateCreated}}" 
+  	 	description="{{article.description}}" 
+  	 	image-url="{{article.imageUrl}}" 
+      author-name="{{article.author.firstName}} {{article.author.lastName}}"
+      author-id="{{article.author.authorId}}"
+  	 	></div>
+  </div>
+ </div>
+ 
+<div my-pagination blog-type="{{blogType}}" category="{{category}}" 
+count-articles="{{countArticles}}" page-size="{{pageSize}}"></div>
+ 

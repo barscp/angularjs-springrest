@@ -1,0 +1,28 @@
+
+<div class="panel panel-default">
+	<img ng-show="article.imageUrl" ng-src="{{article.imageUrl}}" class="img-responsive" alt="Responsive image"/>
+	
+	<div class="panel-body">
+		
+		<div> <h2 class="panel-title">{{article.title}}</h2></div>
+		<div><p><small>by <a ui-sref="author({authorId:article.author.authorId})">{{article.author.firstName}} {{article.author.lastName}}</a> {{article.dateCreated}}</small></p></div>
+		
+		<div><p>{{article.description}}</p></div>		
+		<!-- #articles are uploaded to the server, these are -->
+		<div ng-bind-html="article.content"></div>
+
+
+		
+	
+</div>
+	
+
+<div class="panel-footer">
+
+<span ng-if="article.author.authorId == loginUser.authorId ">
+	<a href="#" ng-click="setEditMode()">
+	Edit</a></span>
+
+
+</div>
+</div>

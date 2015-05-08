@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bperalta.simpleblog.data.Author;
 import com.bperalta.simpleblog.data.dao.AuthorDao;
+import com.bperalta.simpleblog.data.entity.Author;
 
 @Repository
 @Transactional

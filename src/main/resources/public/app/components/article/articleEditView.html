@@ -1,0 +1,50 @@
+<div class="panel panel-default">
+	
+	<div class="panel-body">
+		<div class="form-group">
+			<label for="article.imageUrl">ImageThumbnail</label>
+			<input name="imageUrl" type="text" class="form-control" id="article.imageUrl" ng-model="article.imageUrl" > 
+		</div> 
+		<div class="form-group">
+			<label for="article.title">Title</label>
+			<input name="title" type="text" class="form-control" id="article.title" ng-model="article.title" > 
+		</div>
+		<div class="form-group">
+		<label for="article.description">Description</label>
+		<textarea class="form-control" rows="2" class="form-control" id="article.description" ng-model="article.description" ></textarea> 
+		
+		</div>
+		
+		<div class="form-group">
+			<label for="article.title">Type</label>
+			<select name="type" ng-model="article.type" id="article.type" class="form-control">
+				
+				<option ng-repeat="item in menu" value="{{item.key}}" ng-selected="item.key == article.type">{{item.value}}</option>
+
+			</select>
+		</div>
+		
+		<div class="form-group">
+			<label for="article.category">Category</label>
+			<input name="tag" type="text" class="form-control" id="article.category" ng-model="article.category" > 
+		</div>
+		
+		<div class="form-group">
+		<label for="article.content">Content</label>
+		<textarea class="form-control" rows="20" class="form-control" id="article.content" ng-model="article.content" ></textarea> 
+		
+		</div>
+		
+
+	</div>
+	
+	<div class="panel-footer">
+	<div >
+		<span  ng-if="loginUser.isAdmin">
+		
+		  &nbsp;&nbsp; <a href="#" ng-click="saveArticle()">Save</a></span>
+			    
+	</div> 
+	</div>
+
+</div>

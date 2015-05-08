@@ -28,9 +28,9 @@
         <property name="dataSource" ref="dataSource" />
         <property name="annotatedClasses">
             <list>
-               <value>com.bperalta.simpleblog.data.Login</value>
-               <value>com.bperalta.simpleblog.data.Author</value>
-               <value>com.bperalta.simpleblog.data.Article</value>
+               <value>com.bperalta.simpleblog.data.entity.Author</value>
+               <value>com.bperalta.simpleblog.data.entity.Article</value>
+               <value>com.bperalta.simpleblog.data.entity.Login</value>
                
             </list>
         </property>

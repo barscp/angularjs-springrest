@@ -1,7 +1,13 @@
 package com.bperalta.simpleblog.data.dao;
 
-import com.bperalta.simpleblog.data.Login;
 
-public interface LoginDao extends BaseDao<Login, Long>  {
+import java.util.Optional;
+
+import com.bperalta.simpleblog.data.entity.Login;
+
+
+public interface LoginDao extends BaseDao<Login, Long>{//, UserDetailsService{
+
+	public Optional<Login> findByName(String name);
 
 }
