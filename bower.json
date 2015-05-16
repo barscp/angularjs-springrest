@@ -15,6 +15,8 @@
     "angular-animate": "1.4.x",
     "angular-messages": "1.4.x",
     "angular-ui-router": "0.x.x",
-    "angular-sanitize":"1.4.x"
+    "angular-sanitize":"1.4.x",
+    "angular-bootstrap":"0.x.x",
+    "angulike":"1.2.0"
   }
 }

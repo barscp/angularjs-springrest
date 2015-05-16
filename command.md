@@ -1,3 +1,7 @@
+cd /usr/local/mysql/bin/
+sudo ./mysqld_safe
+sudo ./mysqladmin shutdown
+
 1 added bower.json
 2 bower install...
 

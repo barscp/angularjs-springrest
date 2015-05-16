@@ -36,15 +36,14 @@
 		</div>
 		
 
+	<div  ng-if="loginUser.isAdmin">
+		
+		<button type="button" class="btn btn-primary" ng-click="saveArticle()">Save <i class="glyphicon glyphicon-floppy-disk"></i></button></div>
+		
+			    
+	
 	</div>
 	
-	<div class="panel-footer">
-	<div >
-		<span  ng-if="loginUser.isAdmin">
-		
-		  &nbsp;&nbsp; <a href="#" ng-click="saveArticle()">Save</a></span>
-			    
-	</div> 
-	</div>
+	
 
 </div>

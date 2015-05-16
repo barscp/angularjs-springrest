@@ -15,10 +15,10 @@
 	    })
 	   .state('home', {
 	      url: "/",
-	      templateUrl: "app/components/home/homeView.html"
+	      templateUrl: "app/shared/static_pages/homeView.html"
 	    })
 	    .state('blog', {
-		      url: "/:type/:category/:page",
+		      url: "/blog/:type/:category/:page",
 		      templateUrl: "app/components/blog/blogListView.html",
 		      controller:function($scope,$rootScope,$stateParams, BlogService){
 		      	console.log('type:'+$stateParams.type);
@@ -30,7 +30,17 @@
 		      	 if($stateParams.page){
 		      		 page=$stateParams.page;
 		      	 }
-		    	 if(!$stateParams.category || $stateParams.category == 'all'){
+		      	 $scope.pageNumber = page;
+		    	 if($stateParams.type =='search'){
+		    		 console.log('perform search')
+		    		 BlogService.query({type:$stateParams.type,searchKey:$stateParams.category,page:page},function(data, header){
+		    			 $scope.articleList=data;
+		    			 console.log("CountArticles header: "+header('CountArticles'))
+		    			 $scope.countArticles = header('CountArticles');
+		    			 
+		    		 });
+		    	 }else
+		      	 if(!$stateParams.category || $stateParams.category == 'all'){
 		    		 console.log('category is null or all')
 		    		 BlogService.query({type:$stateParams.type,page:page},function(data, header){
 		    			 $scope.articleList=data;
@@ -54,19 +64,19 @@
 		    	  
 		}).state('author', {
 		      url: "/author/:authorId",
-		      templateUrl: "app/shared/author/authorView.html",
-		      controller:function($scope,$rootScope,$stateParams,ArticleAuthorService){
-		      console.log('authorid: '+$stateParams.authorId)
-		      $scope.authorInfo= ArticleAuthorService.get({authorId:$stateParams.authorId});
+		      templateUrl: "app/components/author/authorView.html",
+		      controller:function($scope,$rootScope,$stateParams,AuthorService){
+		    	  console.log('authorid: '+$stateParams.authorId)
+		    	  $scope.authorInfo= AuthorService.get({authorId:$stateParams.authorId});
 		 
 		    	  
 		      }
 		    	  
 		})    
 	    .state('article', {
-		     url: "/article/:id/:name",
+		     url: "/article/:id",
 		     templateUrl: "app/components/article/articleView.html",
-		     controller:function($scope,$stateParams,ArticleService){
+		     controller:function($scope,$stateParams,$location,$rootScope,ArticleService){
 		    	 //controller is called on the first time, second call on same url wont call this
 		    	 
 		    	 console.log("stateParams:"+ $stateParams.id);
@@ -78,10 +88,15 @@
 		    		   };
 		    	   }else{
 		    		   console.log("not new so get from db");
-		    		   ArticleService.get({articleId:$stateParams.id}, function(success,headers){
-			    		 console.log("result"+ JSON.stringify(success));
-			    		 
-			    		 $scope.article =success;
+		    		   ArticleService.get({articleId:$stateParams.id}, function(data,headers){
+				    		 console.log("result"+ JSON.stringify(data));
+				    		 $scope.article =data;
+				    		 $rootScope.blogType=data.type;
+				    		//need for Disqus
+				    		 $scope.readyToBind=true;
+				    		 console.log("path URL " +$location.absUrl());
+				    		 $scope.articleUrl =$location.absUrl()
+				    		
 			    	 });
 			      } 
 		    	 $scope.id = $stateParams.id;
@@ -89,6 +104,10 @@
 		     }
 		   
 		    	  
-	    }) 
+	    }).state('aboutSite', {
+		      url: "/about-this-website",
+		      templateUrl: "app/shared/static_pages/aboutThisSite.html"
+		    	  
+		});  
 	    
 }]);

@@ -124,6 +124,17 @@ public class BlogServiceImpl implements BlogService{
 		return articleDao.countArticles(type, category);
 	}
 
+	@Override
+	public List<Article> searchArticles(String searchKey, Integer pageNumber,
+			Integer pageSize) {
+		return articleDao.searchArticles(searchKey, pageNumber, pageSize);
+	}
+
+	@Override
+	public int countSearchArticles(String searchKey) {
+		return articleDao.countSearchArticles(searchKey);
+	}
+
 	
 
 }

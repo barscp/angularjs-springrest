@@ -2,7 +2,7 @@
 
 <div class="panel-body"> 
 <div class="panel-title">
-		Categories {{blogType}}
+		categories  - { {{blogType}} }
 	</div>
 <div ng-repeat="category in categories | orderBy: 'category'" >
 	<a ui-sref="blog({type:blogType,category:category.category,page:null})"> 

@@ -1,5 +1,5 @@
 angular.module("app")
-.controller("ArticleController",['$scope','$rootScope','$state','AuthorService', function($scope,$rootScope,$state,AuthorService){
+.controller("ArticleController",['$scope','$rootScope','$state','AuthorService','$modal', function($scope,$rootScope,$state,AuthorService,$modal){
 	$scope.editMode=false;
 	$scope.viewMode=true;
 	
@@ -48,6 +48,7 @@ angular.module("app")
 		}
 		
 	}
+
 	
 }])
 

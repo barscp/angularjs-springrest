@@ -1,5 +1,5 @@
 angular.module('app')
-.controller('loginController',['$scope','$rootScope','$state','$http','UserService', function($scope,$rootScope,$state,$http,UserService){
+.controller('loginController',['$scope','$rootScope','$state','$http','LoginService', function($scope,$rootScope,$state,$http,LoginService){
 
   var authenticate = function(credentials, callback) {
 	  
@@ -10,10 +10,10 @@ angular.module('app')
 	 	console.log("headers: "+ credentials.username +" "+credentials.password);
 	    $rootScope.basicAuth = headers.authorization;
 
-	 	$http.get('http://localhost:8080/authenticate2', {headers : headers})
+	 	$http.get('http://localhost:8080/authenticate', {headers : headers})
 	 		.success(function(data,head) {
 	   		 	console.log("request to /authenticate");
-	      	if (data.name) {
+	      	if (data.token) {
 	      		console.log(JSON.stringify(data));
 	    		console.log("authenticated is true");
 	    	    $rootScope.authenticated = true;
@@ -41,7 +41,7 @@ angular.module('app')
 	      	//$rootScope.loginUser = data;
 	      
 			
-			UserService.get(function(success){
+			LoginService.get(function(success){
 				$rootScope.loginUser = 	success;
 				$rootScope.loginUser.isAdmin = "true";	
 				console.log(JSON.stringify($rootScope.loginUser));

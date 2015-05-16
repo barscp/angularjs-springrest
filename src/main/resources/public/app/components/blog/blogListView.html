@@ -11,10 +11,12 @@
   	 	image-url="{{article.imageUrl}}" 
       author-name="{{article.author.firstName}} {{article.author.lastName}}"
       author-id="{{article.author.authorId}}"
+      category="{{article.category}}"
+      type="{{article.type}}"
   	 	></div>
   </div>
  </div>
  
-<div my-pagination blog-type="{{blogType}}" category="{{category}}" 
-count-articles="{{countArticles}}" page-size="{{pageSize}}"></div>
+<div align="center" my-pagination blog-type="{{blogType}}" category="{{category}}" 
+count-articles="{{countArticles}}" page-size="{{pageSize}}" page-number="{{pageNumber}}"></div>
  

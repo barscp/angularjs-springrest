@@ -5,7 +5,8 @@ angular.module('app')
 			blogType: "@",
 			category: "@",
 			countArticles: "@",
-			pageSize:"@"	
+			pageSize:"@",
+			pageNumber:"@"
 		},
 		templateUrl: "app/shared/pagination/paginationDirectiveView.html",
 		link: function(scope,ele,attrs){
@@ -27,6 +28,12 @@ angular.module('app')
 					items.push(i+1);
 				}
 				return items;
+			}
+			$scope.getNextPage = function(){
+				return parseInt($scope.pageNumber) +1;
+			}
+			$scope.getPrevPage = function(){
+				return parseInt($scope.pageNumber) -1;
 			}
 			
 		}

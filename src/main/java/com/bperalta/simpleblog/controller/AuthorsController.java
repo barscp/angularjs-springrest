@@ -91,12 +91,7 @@ public class AuthorsController {
 		return new ResponseEntity<>(null,null,HttpStatus.NOT_IMPLEMENTED);
 	}
 	
-	
-	//TODO implement update autor
-	@RequestMapping(value="{id}",method=RequestMethod.PUT)
-	public String update(){
-		return "";
-	}
+
 	
 	@RequestMapping(value="init",method=RequestMethod.GET)
 	public String getAll(){
@@ -149,19 +144,13 @@ public class AuthorsController {
 	
 	}
 	
-//	@RequestMapping(value="{id}",method=RequestMethod.GET)
-//	public ResponseEntity<Author> get(@PathVariable("id") Long authorId){
-//		logger.info("getting author with id"+ authorId);
-//		Author author = blogService.findAuthor(authorId);
-//		return new ResponseEntity<Author>(author, HttpStatus.OK);
-//	}
-//	
-	@RequestMapping(value="{id}",method=RequestMethod.DELETE)
-	public String remove(){
-		return "";
+	@RequestMapping(value="{authorId}",method=RequestMethod.GET)
+	public ResponseEntity<Author> get(@PathVariable("authorId") Long authorId){
+		logger.info("getting author with id"+ authorId);
+		Author author = blogService.findAuthor(authorId);
+		return new ResponseEntity<Author>(author, HttpStatus.OK);
 	}
-	
-	
+
 	
 	
 }

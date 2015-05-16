@@ -3,21 +3,12 @@ package com.bperalta.simpleblog.service;
 import java.util.List;
 import java.util.Optional;
 
-//import org.springframework.security.core.userdetails.UserDetails;
-
-
-
-
-
-
-
-import org.springframework.security.access.prepost.PreAuthorize;
-
 import com.bperalta.simpleblog.data.entity.Article;
 import com.bperalta.simpleblog.data.entity.Author;
 //import com.bperalta.simpleblog.data.entity.Login;
 import com.bperalta.simpleblog.data.entity.Login;
 import com.bperalta.simpleblog.transfer.CategoryTransfer;
+//import org.springframework.security.core.userdetails.UserDetails;
 
 public interface BlogService {
 
@@ -36,4 +27,7 @@ public interface BlogService {
 	public List<CategoryTransfer> getCategoriesByType(String type);
 	public void saveUser(Login user);
 	public Login findLoginByUsername(String username);
+    public List<Article> searchArticles(String searchKey, Integer pageNumber, Integer pageSize);
+    public int countSearchArticles(String searchKey);
+	
 }

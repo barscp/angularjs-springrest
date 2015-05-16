@@ -13,19 +13,13 @@ angular.module("app")
 			description:"@",
 			imageUrl:"@",
 			authorName:"@",
-			authorId:"@"
+			authorId:"@",
+			category:"@",
+			type:"@"
 			
 		},
-		templateUrl: "app/shared/articleThumbnail/articleThumbnailView.html",
-		link: function(scope,ele,attrs){
-			scope.$watch(function(scope){
-				return scope.title;
-			}, function(newVal){
-				scope.articleName=scope.title.replace(/ /g,"-");
-				
-				
-			})
-		}
+		templateUrl: "app/shared/articleThumbnail/articleThumbnailView.html"
+		
 	
 	}
 });

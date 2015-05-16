@@ -8,20 +8,21 @@ var simpleBlogApp= angular.module('app', [
   'ui.router',
   'ngResource',
   'ngAnimate',
-  'ngSanitize'
+  'ngSanitize',
+  'ui.bootstrap',
+  'angulike'
 ]);
 
-simpleBlogApp.run(['$rootScope','$state','$http','UserService', function($rootScope,$state,$http,UserService){
-	$rootScope.menu=[{'key':'programming', 'value':'Programming'}, 
-					{'key':'photography', 'value':'Photography'}, 
-					{'key':'projects', 'value':'Projects'},
-					{'key':'blogs', 'value':'Blogs'}];
+simpleBlogApp.run(['$rootScope','$state','$http','LoginService', function($rootScope,$state,$http,LoginService){
+	$rootScope.menu=[{'key':'photography', 'value':'Photography'}, 
+					{'key':'travel', 'value':'Travel'}, 
+					{'key':'code', 'value':'Code'}];
 	console.log('running application...');
-	
+	 $rootScope.facebookAppId = '427122720793949';
 	$rootScope.pageSize=5;
 	
 	console.log('check if still logged in');
-	UserService.get(function(success){
+	LoginService.get(function(success){
 		$rootScope.loginUser = 	success;
 		$rootScope.loginUser.isAdmin = "true";	
 		console.log(JSON.stringify($rootScope.loginUser));

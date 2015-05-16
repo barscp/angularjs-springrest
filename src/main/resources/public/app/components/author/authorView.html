@@ -1,0 +1,9 @@
+	<div class="jumbotron">
+		 <h2>about the author</h2>
+		 <img ng-src="{{authorInfo.profileImgUrl}}" class="img-responsive img-rounded"/> 
+		<div>Name: {{authorInfo.firstName}} {{authorInfo.lastName}}</div>
+		<div>Email: {{authorInfo.email}}</div>
+		<div>{{authorInfo.websiteUrl}}</div>
+		<div ng-bind-html="authorInfo.description"></div>
+		
+		</div>

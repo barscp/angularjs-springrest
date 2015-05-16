@@ -5,7 +5,10 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
@@ -70,6 +73,37 @@ public class ArticleDaoImpl extends HibernateDaoImpl<Article, Long> implements A
 	
 		@SuppressWarnings("unchecked")
 		List<BigInteger> result  =query.list();
+		return result.get(0).intValue();
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<Article> searchArticles(String searchKey, Integer pageNumber,
+			Integer pageSize) {
+		Criteria criteria= getCurrentSession().createCriteria(Article.class);
+		Criterion title = Restrictions.ilike("title", searchKey, MatchMode.ANYWHERE);
+		Criterion category = Restrictions.ilike("category", searchKey, MatchMode.ANYWHERE);
+		Criterion description = Restrictions.ilike("description", searchKey,MatchMode.ANYWHERE);
+		criteria.add(Restrictions.or(title,category,description));
+
+		
+		criteria.setFirstResult((pageNumber-1)*pageSize);
+		criteria.setMaxResults(pageSize);
+		criteria.addOrder(Order.desc("articleId"));
+		return criteria.list();
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public int countSearchArticles(String searchKey) {
+		Criteria criteria= getCurrentSession().createCriteria(Article.class);
+		criteria.setProjection(Projections.rowCount());
+		Criterion title = Restrictions.ilike("title", searchKey, MatchMode.ANYWHERE);
+		Criterion category = Restrictions.ilike("category", searchKey, MatchMode.ANYWHERE);
+		Criterion description = Restrictions.ilike("description", searchKey,MatchMode.ANYWHERE);
+		criteria.add(Restrictions.or(title,category,description));
+		
+		List<Long> result  =criteria.list();
 		return result.get(0).intValue();
 	}
 

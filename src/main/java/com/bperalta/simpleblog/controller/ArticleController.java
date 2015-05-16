@@ -1,6 +1,5 @@
 package com.bperalta.simpleblog.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,16 +10,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.bperalta.simpleblog.data.entity.Article;
-import com.bperalta.simpleblog.data.entity.Author;
 import com.bperalta.simpleblog.service.BlogService;
 import com.bperalta.simpleblog.transfer.CategoryTransfer;
 
@@ -35,7 +30,7 @@ public class ArticleController {
 
 	private static final int PAGE_COUNT =5;
 	
-	//TODO implement pagenation
+	
 	@RequestMapping(method=RequestMethod.GET)
 	public List<Article> getRecentArticles(){
 		List<Article> articles= blogService.getArticles(1, 5);
@@ -44,19 +39,35 @@ public class ArticleController {
 	}
 	
 	@RequestMapping(value="{id}",method=RequestMethod.GET)
-	public ResponseEntity<Article> get(@PathVariable("id") Long id){
+	public ResponseEntity<Article> getArticle(@PathVariable("id") Long id){
 		logger.info("get article by id:"+id);
 		Article form = blogService.findArticle(id).get();
-		//blogService.findArticle(id).
-				//.orElseThrow(()->new ArticleNotFoundException(id));
-		
+			
 		return new ResponseEntity<Article>(form,HttpStatus.OK);
 		
 	}
 	
-    
-	@RequestMapping(value="search/{type}",method=RequestMethod.GET)
-	public ResponseEntity<List<Article>> searchArticlesByType(@PathVariable("type") String type,@RequestParam(value="category", required=false) String category, @RequestParam(value="page", required=false) int page){
+	@RequestMapping(value="type/search",method=RequestMethod.GET)
+	public ResponseEntity<List<Article>> searchArticles(@RequestParam(value="searchKey", required=false) String searchKey, @RequestParam(value="page", required=false) int page){
+		logger.info("search articles:"+searchKey);
+	
+	
+		List<Article> articleList = null;
+		if(page==0){
+			page=1;
+		}
+		int totalArticles =0;
+		articleList= blogService.searchArticles(searchKey, page, PAGE_COUNT);
+		HttpHeaders headers = new HttpHeaders();
+		totalArticles = blogService.countSearchArticles(searchKey);
+		headers.set("CountArticles", ""+totalArticles);
+		
+	
+		
+		return new ResponseEntity<List<Article>>(articleList,headers, HttpStatus.OK);
+	}
+	@RequestMapping(value="type/{type}",method=RequestMethod.GET)
+	public ResponseEntity<List<Article>> getArticlesByType(@PathVariable("type") String type,@RequestParam(value="category", required=false) String category, @RequestParam(value="page", required=false) int page){
 		logger.info("search articles by type:"+type);
 		logger.info("query paramter: "+category);
 	
@@ -97,14 +108,5 @@ public class ArticleController {
 	}
 	
 
-	
-	@RequestMapping(value="author/{id}",method=RequestMethod.GET)
-	public ResponseEntity<Author> getAuthor(@PathVariable("id") Long authorId){
-		logger.info("getting author with id"+ authorId);
-		Author author = blogService.findAuthor(authorId);
-		return new ResponseEntity<Author>(author, HttpStatus.OK);
-	}
-	
-	
 
 }

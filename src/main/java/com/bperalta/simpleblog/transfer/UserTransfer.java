@@ -1,6 +1,5 @@
 package com.bperalta.simpleblog.transfer;
 
-import java.util.Map;
 import java.util.Set;
 
 

@@ -1,28 +1,39 @@
 
 <div class="panel panel-default">
 	<img ng-show="article.imageUrl" ng-src="{{article.imageUrl}}" class="img-responsive" alt="Responsive image"/>
-	
 	<div class="panel-body">
-		
-		<div> <h2 class="panel-title">{{article.title}}</h2></div>
-		<div><p><small>by <a ui-sref="author({authorId:article.author.authorId})">{{article.author.firstName}} {{article.author.lastName}}</a> {{article.dateCreated}}</small></p></div>
-		
+		<div>
+			 <h2>{{article.title}}</h2>
+		</div>
+		<div>
+			<p><small>
+		   	<a ui-sref="blog({type:article.type,category:all,page:null})">{{article.type}}</a>  | <a ui-sref="blog({type:article.type,category:article.category,page:null})">{{article.category}}</a>
+			<br/>
+			  posted by <a ui-sref="author({authorId:article.author.authorId})">{{article.author.firstName}} {{article.author.lastName}}</a>  {{article.dateCreated|date:'MMM dd, yyyy'}}
+				</small></p>
+		</div>
 		<div><p>{{article.description}}</p></div>		
 		<!-- #articles are uploaded to the server, these are -->
 		<div ng-bind-html="article.content"></div>
-
-
 		
+		<div ng-if="article.author.authorId == loginUser.authorId">
+			<br/>
+			<button type="button"  ng-click="setEditMode()" class="btn btn-primary">Edit <i class="glyphicon glyphicon-edit"/></button>	
+		</div> 
+		<br/><br/>
+		
+	</div>
+	<div class="panel-footer white_background">
+		<div fb-like="articleUrl"></div>
+		<br/><br>
+		<dir-disqus disqus-shortname="barscp"
+		         disqus-identifier="{{article.articleId}}"
+		         disqus-url="{{articleUrl}}"
+		         ready-to-bind="{{readyToBind}}">
+		</dir-disqus>
 	
-</div>
-	
-
-<div class="panel-footer">
-
-<span ng-if="article.author.authorId == loginUser.authorId ">
-	<a href="#" ng-click="setEditMode()">
-	Edit</a></span>
+	</div>
 
 
-</div>
+
 </div>
