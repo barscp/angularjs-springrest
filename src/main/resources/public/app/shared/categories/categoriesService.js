@@ -3,7 +3,7 @@
 
 angular.module('app')
 .factory('CategoriesService',['$resource', function($resource){
-	return $resource('http://localhost:8080/articles/:type/categories');
+	return $resource('articles/:type/categories');
 	
 }]);
 

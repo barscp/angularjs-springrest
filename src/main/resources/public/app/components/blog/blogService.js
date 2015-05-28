@@ -3,7 +3,7 @@
 
 angular.module('app')
 .factory('BlogService',['$resource', function($resource){
-	return $resource('http://localhost:8080/articles/type/:type');
+	return $resource('articles/type/:type');
 	
 }]);
 

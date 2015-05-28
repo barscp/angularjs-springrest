@@ -13,42 +13,70 @@ var simpleBlogApp= angular.module('app', [
   'angulike'
 ]);
 
-simpleBlogApp.run(['$rootScope','$state','$http','LoginService', function($rootScope,$state,$http,LoginService){
-	$rootScope.menu=[{'key':'photography', 'value':'Photography'}, 
-					{'key':'travel', 'value':'Travel'}, 
-					{'key':'code', 'value':'Code'}];
+
+
+simpleBlogApp.run(['$rootScope','$state','LoginService','UserService', function($rootScope,$state,LoginService, UserService){
+	$rootScope.menu=[{'key':'devnotes', 'value':'Developer Notes'}, 
+					{'key':'snaps', 'value':'Snap Collection'}, 
+					
+					{'key':'projects', 'value':'Projects'}];
 	console.log('running application...');
 	 $rootScope.facebookAppId = '427122720793949';
 	$rootScope.pageSize=5;
 	
+	
 	console.log('check if still logged in');
 	LoginService.get(function(success){
-		$rootScope.loginUser = 	success;
-		$rootScope.loginUser.isAdmin = "true";	
-		console.log(JSON.stringify($rootScope.loginUser));
+		$rootScope.loginUser = 	true;
+		UserService.setLoginUser(success);
+		
+		
+		
 	}, function(error){
 		console.log("not logged-in encountered")
+		UserService.setLoginUser(null);
+		$rootScope.loginUser = 	false;
 	});
 	
-	$rootScope.logout = function(){
-		//call spring url
-	 	$http.post('http://localhost:8080/logout')
- 		.success(function(data,head) {
-   		 	console.log("logout successfully");
-	   		 $rootScope.loginUser = null;
-	 		$rootScope.basicAuth = null;
-	 		$state.go("home");
-    	})
- 		.error(function() {
-	      console.log("faild logging out");
- 		});
-	
-	}
+
 	
 
 
 	
 }]);
+//*Page title and  MetaInformation helps on google search SEO, study further
+simpleBlogApp.service('PageTitle', function() {
+    var title = 'DeveloperLife';
+    return {
+      title: function() { return title; },
+      setTitle: function(newTitle) { title = newTitle; }
+    };
+  });
+simpleBlogApp.service('MetaInformation', function() {
+    var metaDescription = '';
+    var metaKeywords = '';
+    return {
+      metaDescription: function() { return metaDescription; },
+      metaKeywords: function() { return metaKeywords; },
+      reset: function() {
+        metaDescription = '';
+        metaKeywords = '';
+      },
+      setMetaDescription: function(newMetaDescription) {
+        metaDescription = newMetaDescription;
+      },
+      appendMetaKeywords: function(newKeywords) {
+        for (var key in newKeywords) {
+          if (metaKeywords === '') {
+            metaKeywords += newKeywords[key].name;
+          } else {
+            metaKeywords += ', ' + newKeywords[key].name;
+          }
+        }
+      }
+    };
+  });
+
 
 // simpleBlogApp.factory('myInterceptor',
 //	 function($q,$rootScope) {

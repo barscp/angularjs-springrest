@@ -1,30 +1,20 @@
 angular.module("app")
-.controller("ArticleController",['$scope','$rootScope','$state','AuthorService','$modal', function($scope,$rootScope,$state,AuthorService,$modal){
-	$scope.editMode=false;
-	$scope.viewMode=true;
+.controller("ArticleEditController",['$scope','$state','AuthorService','UserService', function($scope,$state,AuthorService,UserService){
 	
-	$scope.setEditMode=function(){
-		$scope.editMode=true;
-		$scope.viewMode=false;
-		console.log("edit mode");
-		
-	}
-	$scope.setViewMode=function(){
-		$scope.editMode=false;
-		$scope.viewMode=true;
-		console.log("view mode");
-		
-	}
-	
-	if($scope.id=='new'){
-		$scope.setEditMode();
-	}
 	$scope.saveArticle=function(){
+		if($scope.frm.$invalid) {
+				 $scope.frm.submitted=true;
+				  return;
+		}
+		   
 		console.log("saving form...");
 		console.log(JSON.stringify($scope.article));
 		var articleName=$scope.article.title.replace(/ /g,"-");
+		
+		var user = UserService.getLoginUser();
+		
 		if($scope.article.articleId){
-			AuthorService.updateArticle({authorId:$rootScope.loginUser.authorId, articleId:$scope.article.articleId},JSON.stringify($scope.article), function(data,headers){
+			AuthorService.updateArticle({authorId:user.authorId, articleId:$scope.article.articleId},JSON.stringify($scope.article), function(data,headers){
 				console.log("update success");
 				console.log("location: "+headers('Location'))
 				var returnId = headers('Location').split('/').pop();
@@ -35,7 +25,7 @@ angular.module("app")
 				console.log("update error");
 			});
 		}else {
-			AuthorService.addArticle({authorId:$rootScope.loginUser.authorId},JSON.stringify($scope.article), function(data,headers){
+			AuthorService.addArticle({authorId:user.authorId},JSON.stringify($scope.article), function(data,headers){
 				console.log("save success");
 				console.log("location: "+headers('Location'))
 				var returnId = headers('Location').split('/').pop();

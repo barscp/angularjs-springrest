@@ -46,7 +46,7 @@ public class Login implements UserDetails
 	@OneToOne(mappedBy="userLogin",fetch=FetchType.LAZY)
 	private Author author;	
 	
-    
+    @JsonIgnore  
     @Column(length = 80, nullable = false)
 	private String password;
 

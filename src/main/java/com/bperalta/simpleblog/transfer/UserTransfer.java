@@ -1,11 +1,16 @@
 package com.bperalta.simpleblog.transfer;
 
+import java.io.Serializable;
 import java.util.Set;
 
 
-public class UserTransfer
+public class UserTransfer implements Serializable
 {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final String name;
 	private final Long authorId;
 	private final Set<String> roles;

@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
-@ImportResource("/com/bperalta/simpleblog/applicationContext.xml")
+@ImportResource("classpath:/com/bperalta/simpleblog/applicationContext.xml")
 public class SimpleBlogSpringBoot {
 	
 	

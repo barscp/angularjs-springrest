@@ -1,47 +1,66 @@
-<div class="panel panel-default">
+<div class="panel panel-default" ng-controller="ArticleEditController">
 	
 	<div class="panel-body">
+	<form name="frm" ng-submit="saveArticle()" novalidate>
+		<div class="alert alert-danger" ng-if="frm.submitted && frm.$invalid" >
+					Validation error encountered.
+				</div>
 		<div class="form-group">
 			<label for="article.imageUrl">ImageThumbnail</label>
 			<input name="imageUrl" type="text" class="form-control" id="article.imageUrl" ng-model="article.imageUrl" > 
 		</div> 
 		<div class="form-group">
-			<label for="article.title">Title</label>
-			<input name="title" type="text" class="form-control" id="article.title" ng-model="article.title" > 
+			<label for="article">Title</label>
+			<input name="title" type="text" class="form-control" id="article" ng-model="article.title" required > 
+			<div ng-if="frm.submitted" ng-messages="frm.title.$error">
+									<div ng-messages-include="app/components/error/errors.html"/>							  
+							  </div> 
 		</div>
 		<div class="form-group">
 		<label for="article.description">Description</label>
-		<textarea class="form-control" rows="2" class="form-control" id="article.description" ng-model="article.description" ></textarea> 
+		<div ng-if="frm.submitted" ng-messages="frm.description.$error">
+									<div ng-messages-include="app/components/error/errors.html"/>							  
+							  </div> 
+		<textarea name="description" class="form-control" rows="2" class="form-control" id="article.description" ng-model="article.description" required></textarea> 
 		
 		</div>
 		
 		<div class="form-group">
 			<label for="article.title">Type</label>
-			<select name="type" ng-model="article.type" id="article.type" class="form-control">
+			<select name="type" ng-model="article.type" id="article.type" class="form-control" required>
 				
 				<option ng-repeat="item in menu" value="{{item.key}}" ng-selected="item.key == article.type">{{item.value}}</option>
 
 			</select>
+			<div ng-if="frm.submitted" ng-messages="frm.type.$error">
+									<div ng-messages-include="app/components/error/errors.html"/>							  
+							  </div> 
 		</div>
 		
 		<div class="form-group">
 			<label for="article.category">Category</label>
-			<input name="tag" type="text" class="form-control" id="article.category" ng-model="article.category" > 
+			<input name="category" type="text" class="form-control" id="article.category" ng-model="article.category" required> 
+			<div ng-if="frm.submitted" ng-messages="frm.category.$error">
+									<div ng-messages-include="app/components/error/errors.html"/>							  
+							  </div> 
 		</div>
 		
 		<div class="form-group">
 		<label for="article.content">Content</label>
-		<textarea class="form-control" rows="20" class="form-control" id="article.content" ng-model="article.content" ></textarea> 
+		<div ng-if="frm.submitted" ng-messages="frm.content.$error">
+									<div ng-messages-include="app/components/error/errors.html"/>							  
+							  </div> 
+		<textarea name="content" class="form-control" rows="20" class="form-control" id="article.content" ng-model="article.content" required ></textarea> 
 		
 		</div>
 		
 
-	<div  ng-if="loginUser.isAdmin">
-		
-		<button type="button" class="btn btn-primary" ng-click="saveArticle()">Save <i class="glyphicon glyphicon-floppy-disk"></i></button></div>
+		<div ng-if="user">
+			<button type="submit" class="btn btn-primary" >Save <i class="glyphicon glyphicon-floppy-disk"></i></button>
+		</div>
 		
 			    
-	
+	</form>
 	</div>
 	
 	

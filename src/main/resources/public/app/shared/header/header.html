@@ -1,13 +1,13 @@
 
-<div >
-	<div align="right">
+<div ng-controller="HeaderController">
+	<div align="right" >
 		
-		<span  ng-if="loginUser.isAdmin=='true'">
-		Welcome back <a ui-sref="author({authorId:loginUser.authorId})">{{loginUser.name}}</a>!&nbsp;&nbsp;
+		<span  ng-if="loginUser">
+		Welcome back <a ui-sref="author({authorId:user.authorId})">{{user.name}}</a>!&nbsp;&nbsp;
 		<a href="#" ng-click="logout()">
 		Sign out</a> 	
 	  </span>
-	  <span ng-if = "loginUser==null">
+	  <span ng-if = "!loginUser">
 		<a href="#" ui-sref="login">
 		Sign in</i></a></span>
 	</div> 
@@ -21,8 +21,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-       <a class="navbar-brand" ui-sref="home">
-      	{ barscp }
+       <a class="navbar-brand" ui-sref="home"><b>
+      	{ Life of a developer }</b>
         </a>
     </div>
    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -30,11 +30,13 @@
   		
 	      <li ng-repeat="item in menu" ui-sref-active="active">
 	        <a ui-sref="blog({type:item.key, category:'all', page:null})" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-	          {{item.value}}
+	         <b> {{item.value}}</b>
 	        </a>
+	      
+	      
 	      </li>
 	   </ul>
-		<div ng-controller="SearchController" >
+		<div>
 			<form class="navbar-form navbar-right" role="search" ng-submit="doSearch()">
 	        	<div class="input-group">
 	       		   <input type="text" class="form-control" placeholder="Search" ng-model="searchText" >

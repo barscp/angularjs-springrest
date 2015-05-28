@@ -1,5 +1,5 @@
 
-<div class="panel panel-default">
+<div class="panel panel-default" ng-if="article">
 	<img ng-show="article.imageUrl" ng-src="{{article.imageUrl}}" class="img-responsive" alt="Responsive image"/>
 	<div class="panel-body">
 		<div>
@@ -16,7 +16,7 @@
 		<!-- #articles are uploaded to the server, these are -->
 		<div ng-bind-html="article.content"></div>
 		
-		<div ng-if="article.author.authorId == loginUser.authorId">
+		<div ng-if="article.author.authorId == user.authorId">
 			<br/>
 			<button type="button"  ng-click="setEditMode()" class="btn btn-primary">Edit <i class="glyphicon glyphicon-edit"/></button>	
 		</div> 

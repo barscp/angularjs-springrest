@@ -1,0 +1,61 @@
+<div class="panel panel-default" ng-controller="AuthorEditController">
+	
+	<div class="panel-body">
+	<form name="frm" ng-submit="saveAuthor()" novalidate>
+		<div class="alert alert-danger" ng-if="frm.submitted && frm.$invalid" >
+					Validation error encountered.
+				</div>
+		<div class="form-group">
+			<label for="profileImgUrl">Profile Photo</label>
+			<input name="profileImgUrl" type="text" class="form-control" id="profileImgUrl" ng-model="authorInfo.profileImgUrl" > 
+		</div> 
+		<div class="form-group">
+			<label for="firstName">First Name</label>
+			<input name="firstName" type="text" class="form-control" id="firstName" ng-model="authorInfo.firstName" required > 
+			<div ng-if="frm.submitted" ng-messages="frm.firstName.$error">
+									<div ng-messages-include="app/components/error/errors.html"/>							  
+							  </div> 
+		</div>
+		<div class="form-group">
+			<label for="lastName">Last Name</label>
+			<input name="lastName" type="text" class="form-control" id="lastName" ng-model="authorInfo.lastName" required > 
+			<div ng-if="frm.submitted" ng-messages="frm.lastName.$error">
+									<div ng-messages-include="app/components/error/errors.html"/>							  
+							  </div> 
+		</div>
+			<div class="form-group">
+			<label for="email">Email</label>
+			<input name="email" type="email" class="form-control" id="email" ng-model="authorInfo.email" required > 
+			<div ng-if="frm.submitted" ng-messages="frm.email.$error">
+									<div ng-messages-include="app/components/error/errors.html"/>							  
+							  </div> 
+		</div>
+		<div class="form-group">
+			<label for="websiteUrl">Email</label>
+			<input name="websiteUrl" type="url" class="form-control" id="websiteUrl" ng-model="authorInfo.websiteUrl" required > 
+			<div ng-if="frm.submitted" ng-messages="frm.websiteUrl.$error">
+									<div ng-messages-include="app/components/error/errors.html"/>							  
+							  </div> 
+		</div>
+		<div class="form-group">
+		<label for="description">Description</label>
+		<div ng-if="frm.submitted" ng-messages="frm.description.$error">
+									<div ng-messages-include="app/components/error/errors.html"/>							  
+							  </div> 
+		<textarea name="description" class="form-control" rows="2" class="form-control" id="description" ng-model="authorInfo.description" required></textarea> 
+		
+		</div>
+	
+		
+
+		<div ng-if="user.isAdmin || authorInfo.authorId == user.authorId"">
+			<button type="submit" class="btn btn-primary" >Save <i class="glyphicon glyphicon-floppy-disk"></i></button>
+		</div>
+		
+			    
+	</form>
+	</div>
+	
+	
+
+</div>

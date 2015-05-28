@@ -1,0 +1,17 @@
+	<div class="jumbotron" ng-if="authorInfo">
+		 <h2>about the author</h2>
+		 <img ng-src="{{authorInfo.profileImgUrl}}" class="img-responsive img-rounded"/> 
+		<div>Name: {{authorInfo.firstName}} {{authorInfo.lastName}}</div>
+		<div>Email: {{authorInfo.email}}</div>
+		<div>{{authorInfo.websiteUrl}}</div>
+		<div ng-bind-html="authorInfo.description"></div>
+		
+		
+		<div ng-if="user.isAdmin || authorInfo.authorId == user.authorId"">
+			<br/>
+			<button type="button"  ng-click="setEditMode()" class="btn btn-primary">Edit Profile <i class="glyphicon glyphicon-edit"/></button>	<br/><br/>
+			
+			<!--  button  ui-sref="changePassword" class="btn btn-primary" >Change Password <i class="glyphicon glyphicon-edit"/></button-->	
+		
+		</div> 
+		</div>

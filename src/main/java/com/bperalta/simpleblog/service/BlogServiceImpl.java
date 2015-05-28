@@ -54,6 +54,7 @@ public class BlogServiceImpl implements BlogService{
 
 	@Override
 	public Long saveAuthor(Author author) {
+		
 		authorDao.save(author);
 		return author.getAuthorId();
 	}
@@ -133,6 +134,12 @@ public class BlogServiceImpl implements BlogService{
 	@Override
 	public int countSearchArticles(String searchKey) {
 		return articleDao.countSearchArticles(searchKey);
+	}
+
+	@Override
+	public void updateAuthor(Author author) {
+	      authorDao.update(author);
+		
 	}
 
 	

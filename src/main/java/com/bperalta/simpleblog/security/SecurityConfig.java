@@ -3,6 +3,7 @@ package com.bperalta.simpleblog.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -34,7 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.httpBasic().authenticationEntryPoint(ce);
 		
 		http.httpBasic().and().authorizeRequests()
-				.antMatchers("/authors/init","/index.html","/assets/**","/app/**","/articles/**").permitAll()
+				.antMatchers("/index.html","/assets/**","/app/**","/articles/**").permitAll()
+				.antMatchers(HttpMethod.GET,"/authors/*").permitAll()
 				.anyRequest().authenticated()
 				.and().logout().permitAll()
 				.and()//.csrf().disable(); //disable for cross domain

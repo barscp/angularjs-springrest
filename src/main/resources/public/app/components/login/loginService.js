@@ -1,4 +1,4 @@
 app.factory('LoginService',['$resource', function($resource){
-	return $resource('http://localhost:8080/user/:action',
+	return $resource('user/:action',
 			 {action:'@action'});
 }]);

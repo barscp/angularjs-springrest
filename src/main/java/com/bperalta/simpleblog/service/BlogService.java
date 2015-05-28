@@ -18,6 +18,7 @@ public interface BlogService {
 
 	public int countArticles(String type, String category);
 	public Long saveAuthor(Author author);
+	public void updateAuthor(Author author);
 	//public Long saveLogin(Login login);
 	public Author findAuthor(Long i);
 	public Optional<Article> findArticle(Long i);

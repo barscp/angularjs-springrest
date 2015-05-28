@@ -39,12 +39,40 @@ public class AuthorsController {
 	@Autowired
 	private BlogService blogService;
 	
-	//TODO update the implementation of add user
+	@RequestMapping(value="{authorId}",method=RequestMethod.GET)
+	public ResponseEntity<Author> getAuthor(@PathVariable("authorId") Long authorId){
+		logger.info("getting author with id"+ authorId);
+		Author author = blogService.findAuthor(authorId);
+		return new ResponseEntity<Author>(author, HttpStatus.OK);
+	}
+	
+	
+	
+	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Author> save(@RequestBody Author author ){
+	public ResponseEntity<Author> save(Principal user, @RequestBody Author author ){
 		logger.info("saving author...");
-		blogService.saveAuthor(author);
+		logger.info("user:"+ user.getName());
+		Long authorId=blogService.saveAuthor(author);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setLocation(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(authorId).toUri());
 		return new ResponseEntity<Author>(author,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="{authorId}",method=RequestMethod.PUT)
+	public ResponseEntity<?> updateAuthor(Principal user,@PathVariable("authorId") Long authorId, @RequestBody Author author){
+		logger.info("update author with authorId:"+authorId);
+		logger.info("user:"+ user.getName());
+		//validate author
+		//validate article
+		//Author
+		blogService.updateAuthor(author);
+		HttpHeaders headers = new HttpHeaders();
+		//headers.setLocation(linkTo(ArticleController.class).slash);
+		headers.setLocation(ServletUriComponentsBuilder.fromCurrentRequest().build().toUri());
+	
+		logger.info(headers.getLocation().toString());
+		return new ResponseEntity<>(null,headers,HttpStatus.OK);
 	}
 	
 	//TODO save article should be here at the author
@@ -63,14 +91,14 @@ public class AuthorsController {
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(articleId).toUri());
-		headers.set("articleId", ""+articleId);
+		//headers.set("articleId", ""+articleId);
 		logger.info(headers.getLocation().toString());
 		return new ResponseEntity<Void>(null,headers,HttpStatus.CREATED);
 	}
 	
 	
 	@RequestMapping(value="{authorId}/article/{articleId}",method=RequestMethod.PUT)
-	public ResponseEntity<?> update(@PathVariable("authorId") Long authorId, @PathVariable("articleId") Long articleId, @RequestBody Article article){
+	public ResponseEntity<?> updateArticle(@PathVariable("authorId") Long authorId, @PathVariable("articleId") Long articleId, @RequestBody Article article){
 		logger.info("update article with id"+articleId+" for user with id "+authorId);
 		//validate author
 		//validate article
@@ -80,7 +108,7 @@ public class AuthorsController {
 		//headers.setLocation(linkTo(ArticleController.class).slash);
 		headers.setLocation(ServletUriComponentsBuilder.fromCurrentRequest().build().toUri());
 		
-		headers.set("articleId", ""+articleId);
+		//headers.set("articleId", ""+articleId);
 		logger.info(headers.getLocation().toString());
 		return new ResponseEntity<>(null,headers,HttpStatus.OK);
 	}
@@ -144,12 +172,7 @@ public class AuthorsController {
 	
 	}
 	
-	@RequestMapping(value="{authorId}",method=RequestMethod.GET)
-	public ResponseEntity<Author> get(@PathVariable("authorId") Long authorId){
-		logger.info("getting author with id"+ authorId);
-		Author author = blogService.findAuthor(authorId);
-		return new ResponseEntity<Author>(author, HttpStatus.OK);
-	}
+
 
 	
 	

@@ -1,6 +1,6 @@
 var app=angular.module('app')
 app.factory('ArticleService',['$resource', function($resource){
-	return $resource('http://localhost:8080/articles/:articleId', {articleId:'@id'}, {
+	return $resource('articles/:articleId', {articleId:'@id'}, {
 		getArticle: {
 			method:'GET'
 		},

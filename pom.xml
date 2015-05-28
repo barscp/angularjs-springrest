@@ -6,7 +6,22 @@
   <name>SimpleBlog</name>
   <description>This application aims to create a simple blogging website that uses SPA concept.</description>
 
-	
+
+<build>
+    <finalName>SimpleBlog</finalName>
+    <plugins>
+       <plugin>
+           <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-compiler-plugin</artifactId>
+           <configuration>
+               <source>1.8</source>
+               <target>1.8</target>
+           </configuration>
+       </plugin>
+      
+    </plugins>
+  </build>
+  	
  <properties>
  	<spring.security.version>3.2.3.RELEASE</spring.security.version>
     <hibernate.version>4.3.5.Final</hibernate.version>
@@ -14,6 +29,8 @@
      <!-- Logging -->
     <logback.version>1.0.13</logback.version>
     <slf4j.version>1.7.5</slf4j.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <start-class>com.bperalta.simpleblog.SimpleBlogSpringBoot</start-class>
   </properties>
 
     <parent>
@@ -89,18 +106,16 @@
             <artifactId>commons-dbcp</artifactId>
             <version>1.4</version>
         </dependency>
-
-        <dependency>
-        	<groupId>org.springframework.boot</groupId>
-        	<artifactId>spring-boot-starter-undertow</artifactId>
-        </dependency>
-        <dependency>
-        	<groupId>commons-lang</groupId>
-        	<artifactId>commons-lang</artifactId>
-        	<version>2.4</version>
-        </dependency>
+		<!-- added for test in aws -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+       
     </dependencies>
 
 
 
+    <packaging>war</packaging>
 </project>

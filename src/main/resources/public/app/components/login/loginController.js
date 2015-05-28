@@ -1,7 +1,7 @@
 angular.module('app')
-.controller('loginController',['$scope','$rootScope','$state','$http','LoginService', function($scope,$rootScope,$state,$http,LoginService){
+.controller('loginController',['$scope','$rootScope','$state','$http','LoginService','UserService', function($scope,$rootScope,$state,$http,LoginService, UserService){
 
-  var authenticate = function(credentials, callback) {
+  var authenticate = function(credentials, successCallBack) {
 	  
 	    console.log("calling authenticate function");
 	    var headers = credentials ? {authorization : "Basic "
@@ -10,50 +10,39 @@ angular.module('app')
 	 	console.log("headers: "+ credentials.username +" "+credentials.password);
 	    $rootScope.basicAuth = headers.authorization;
 
-	 	$http.get('http://localhost:8080/authenticate', {headers : headers})
+	 	$http.get('authenticate', {headers : headers})
 	 		.success(function(data,head) {
-	   		 	console.log("request to /authenticate");
-	      	if (data.token) {
+	   		 	console.log("authentication success");
 	      		console.log(JSON.stringify(data));
-	    		console.log("authenticated is true");
-	    	    $rootScope.authenticated = true;
+	    	    successCallBack && successCallBack(data); 
 	      	
-	      	    
-	      	
-	      	} else {
-	       		$rootScope.authenticated = false;
-	     	 	console.log("authenticated is false");
-	     	 
-	      	}
-	      	callback && callback(data); //if callback is not null the perform callback()?
 	    	})
 	 		.error(function() {
 	 		console.log("authentication failed");	
-	      	$rootScope.authenticated = false;
-	      	$scope.error="true";
-	      	callback && callback();
+	 		$scope.error = true;
+	      
 	    });
 	};
 
    $scope.login = function() {
+	   if($scope.frm.$invalid) {
+			 $scope.frm.submitted=true;
+			  return;
+	   }
+	   
       authenticate($scope.credentials, function(data) {
-	      if($rootScope.authenticated) {
-	      	//$rootScope.loginUser = data;
-	      
-			
-			LoginService.get(function(success){
-				$rootScope.loginUser = 	success;
-				$rootScope.loginUser.isAdmin = "true";	
-				console.log(JSON.stringify($rootScope.loginUser));
-			});
+    	  UserService.setLoginUser(null);
+    	  $rootScope.loginUser = false;
+	      LoginService.get(function(success){
+				UserService.setLoginUser(success);
+				$rootScope.loginUser=true;
+				console.log(JSON.stringify(UserService.getLoginUser()));
+				$state.go("home");
 				
-			
+	      });
+				
+	
 		
-			
-			
-
-			$state.go("home");
-		}
 
       });
 		

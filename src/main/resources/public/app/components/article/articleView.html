@@ -1,5 +1,9 @@
 
-<div ng-controller="ArticleController">
+<div>
+ <title ng-bind="PageTitle.title()"></title>
+  
+<meta name="description" content="{{ MetaInformation.metaDescription() }}">
+<meta name="keywords" content="{{ MetaInformation.metaKeywords() }}">
 	<div ng-if="editMode">
 		<div ng-include="'app/components/article/articleEditView.html'"></div>
 	</div>
