@@ -18,12 +18,13 @@ angular.module('app')
 		
 		$scope.logout = function(){
 			//call spring url
+			$scope.signoutLoading= true;
 		 	$http.post('/logout')
 	 		.success(function(data,head) {
 	   		 	console.log("logout successfully");
 		   		 $rootScope.loginUser = false;
 		   		UserService.setLoginUser(null);
-		 		
+		 		$scope.signoutLoading=false;
 		 		$state.go("home");
 	    	})
 	 		.error(function() {

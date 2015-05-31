@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.httpBasic().authenticationEntryPoint(ce);
 		
 		http.httpBasic().and().authorizeRequests()
-				.antMatchers("/index.html","/assets/**","/app/**","/articles/**").permitAll()
+				.antMatchers("/index.html","/assets/**","/app/**","/articles/**", "/scrapper/**","/socialMediaScrapper.html").permitAll()
 				.antMatchers(HttpMethod.GET,"/authors/*").permitAll()
 				.anyRequest().authenticated()
 				.and().logout().permitAll()

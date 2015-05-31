@@ -1,13 +1,13 @@
 angular.module('app')
 .controller('loginController',['$scope','$rootScope','$state','$http','LoginService','UserService', function($scope,$rootScope,$state,$http,LoginService, UserService){
 
-  var authenticate = function(credentials, successCallBack) {
+  var authenticate = function(credentials, successCallBack, errorCallBack) {
 	  
 	    console.log("calling authenticate function");
 	    var headers = credentials ? {authorization : "Basic "
 	        + btoa(credentials.username + ":" + credentials.password)
 	    } : {};
-	 	console.log("headers: "+ credentials.username +" "+credentials.password);
+	 	//console.log("headers: "+ credentials.username +" "+credentials.password);
 	    $rootScope.basicAuth = headers.authorization;
 
 	 	$http.get('authenticate', {headers : headers})
@@ -20,6 +20,7 @@ angular.module('app')
 	 		.error(function() {
 	 		console.log("authentication failed");	
 	 		$scope.error = true;
+	 		errorCallBack && errorCallBack();
 	      
 	    });
 	};
@@ -29,7 +30,7 @@ angular.module('app')
 			 $scope.frm.submitted=true;
 			  return;
 	   }
-	   
+	   $scope.loginLoading = true;
       authenticate($scope.credentials, function(data) {
     	  UserService.setLoginUser(null);
     	  $rootScope.loginUser = false;
@@ -37,6 +38,7 @@ angular.module('app')
 				UserService.setLoginUser(success);
 				$rootScope.loginUser=true;
 				console.log(JSON.stringify(UserService.getLoginUser()));
+				$scope.loginLoading=false;
 				$state.go("home");
 				
 	      });
@@ -44,6 +46,9 @@ angular.module('app')
 	
 		
 
+      }, function(){
+    	  $scope.loginLoading=false;
+			
       });
 		
   };

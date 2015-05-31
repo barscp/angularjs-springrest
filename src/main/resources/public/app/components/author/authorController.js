@@ -1,8 +1,6 @@
 angular.module("app")
-.controller("AuthorController",['$scope','$state','UserService','authorInfo', function($scope,$state,UserService,authorInfo){
+.controller("AuthorController",['$scope','$stateParams','UserService','AuthorService', function($scope,$stateParams,UserService,AuthorService){
 	
-	 console.log("result:"+ JSON.stringify(authorInfo));
-	 $scope.authorInfo=authorInfo;
 	
 	$scope.editMode=false;
 	$scope.viewMode=true;
@@ -21,8 +19,16 @@ angular.module("app")
 	}
 	
 	$scope.user = UserService.getLoginUser();
-
-	
+	  $scope.loadingAuthor = true;
+		 
+	AuthorService.get({authorId:$stateParams.authorId},function(data){
+		 $scope.authorInfo=data;
+		  $scope.loadingAuthor = false;
+			 
+	},function(error){
+		console.log('error loading author info');
+		$scope.loadingAuthor = false;
+	});
 }])
 
 

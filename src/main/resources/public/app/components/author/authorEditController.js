@@ -6,7 +6,8 @@ angular.module("app")
 				 $scope.frm.submitted=true;
 				  return;
 		}
-		   
+		$scope.saveLoading=true; 
+		  
 		console.log("saving author info..");
 		console.log(JSON.stringify($scope.authorInfo));
 		var user = UserService.getLoginUser();
@@ -16,10 +17,15 @@ angular.module("app")
 				console.log("location: "+headers('Location'))
 				var returnId = headers('Location').split('/').pop();
 				$state.go("^.author",{authorId:returnId});
+				
+				$scope.saveLoading=false; 
 				$scope.setViewMode();
+				
 			},
 			function(error){
 				console.log("update error");
+				$scope.saveLoading=false; 
+				
 			});
 		}
 		

@@ -5,7 +5,9 @@
 		<span  ng-if="loginUser">
 		Welcome back <a ui-sref="author({authorId:user.authorId})">{{user.name}}</a>!&nbsp;&nbsp;
 		<a href="#" ng-click="logout()">
-		Sign out</a> 	
+		Sign out </a>
+		 <i ng-if="signoutLoading==true" class="fa fa-refresh fa-spin"></i>
+		 	
 	  </span>
 	  <span ng-if = "!loginUser">
 		<a href="#" ui-sref="login">
@@ -22,14 +24,18 @@
         <span class="icon-bar"></span>
       </button>
        <a class="navbar-brand" ui-sref="home"><b>
-      	{ Life of a developer }</b>
+     
+      	{ barscp }</b>
         </a>
     </div>
    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
   		
 	      <li ng-repeat="item in menu" ui-sref-active="active">
+	        
 	        <a ui-sref="blog({type:item.key, category:'all', page:null})" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+	        <i ng-class="item.icon"></i>
+	        
 	         <b> {{item.value}}</b>
 	        </a>
 	      

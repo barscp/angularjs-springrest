@@ -36,8 +36,8 @@ public class AuthenticationCtrl {
 			Login loginInfo =blogService.findLoginByUsername(user.getName());
 			logger.info("login id:" + loginInfo.getLoginId());
 			logger.info("login roles:" + loginInfo.getRoles());
-			logger.info("login roles:" + loginInfo.getAuthor());
-			
+			logger.info("get author:" + loginInfo.getAuthor());
+		
 			
 			UserTransfer userTransfer = new UserTransfer(user.getName(),loginInfo.getAuthor().getAuthorId(),loginInfo.getRoles());
 		    return new ResponseEntity<UserTransfer>(userTransfer,HttpStatus.OK);

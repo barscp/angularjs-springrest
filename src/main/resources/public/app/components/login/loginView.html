@@ -21,7 +21,7 @@
 									<div ng-messages-include="app/components/error/errors.html"/>							  
 							  </div> 		
 					</div>
-					<button type="submit" class="btn btn-primary">Sign in</button>
+					<button type="submit" class="btn btn-primary" ng-disabled="loginLoading">Sign in <span  ng-show="loginLoading==true"><i class="fa fa-refresh fa-spin"></i></span></button>
 					
 				</form>
 			</div>

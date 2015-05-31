@@ -6,7 +6,7 @@ angular.module("app")
 				 $scope.frm.submitted=true;
 				  return;
 		}
-		   
+		 $scope.saveLoading=true;  
 		console.log("saving form...");
 		console.log(JSON.stringify($scope.article));
 		var articleName=$scope.article.title.replace(/ /g,"-");
@@ -19,10 +19,13 @@ angular.module("app")
 				console.log("location: "+headers('Location'))
 				var returnId = headers('Location').split('/').pop();
 				$state.go("^.article",{id:returnId,name:articleName});
+				$scope.saveLoading=false; 
 				$scope.setViewMode();
 			},
 			function(error){
 				console.log("update error");
+				$scope.saveLoading=false; 
+				
 			});
 		}else {
 			AuthorService.addArticle({authorId:user.authorId},JSON.stringify($scope.article), function(data,headers){
@@ -30,10 +33,14 @@ angular.module("app")
 				console.log("location: "+headers('Location'))
 				var returnId = headers('Location').split('/').pop();
 				$state.go("^.article",{id:returnId,name:articleName });
+				$scope.saveLoading=false; 
+				
 				$scope.setViewMode();
 			},
 			function(error){
 				console.log("save error");
+				$scope.saveLoading=false; 
+				
 			});
 		}
 		

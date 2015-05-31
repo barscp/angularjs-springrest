@@ -1,5 +1,6 @@
 
-<div>
+<div my-loading-display load-indicator="loadingArticle"></div>
+<div ng-if="article">
  <title ng-bind="PageTitle.title()"></title>
   
 <meta name="description" content="{{ MetaInformation.metaDescription() }}">
