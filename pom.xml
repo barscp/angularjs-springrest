@@ -8,7 +8,7 @@
 
 
 <build>
-    <finalName>SimpleBlog</finalName>
+    <finalName>blog</finalName>
     <plugins>
        <plugin>
            <groupId>org.apache.maven.plugins</groupId>

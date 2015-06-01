@@ -1,12 +1,15 @@
 
 <div class="panel panel-default">
-<div class="panel-body">
-<div class="panel-title">
-		recent articles
+	<div class="panel-body">
+		<div class="panel-title">recent articles</div>
+
+<ul>
+		<li ng-repeat="article in articles">
+			 <a
+				ui-sref="article({id:article.articleId})">{{article.title}}
+              <small>   - {{article.type}}- {{article.dateCreated|date:'MMM dd, yyyy'}}</small></a>
+		
+		</li>
+</ul>
 	</div>
- 
-	<div ng-repeat="article in articles">
-		<a ui-sref="article({id:article.articleId})">{{article.title}}</a>
-	</div>
-</div>
 </div>

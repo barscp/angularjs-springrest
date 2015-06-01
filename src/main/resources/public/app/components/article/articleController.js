@@ -46,7 +46,7 @@ angular.module("app")
 			   if(port){
 				   scrapperUrl = scrapperUrl+":"+port;
 			   }
-			   scrapperUrl = scrapperUrl+"/scrapper/article/"+data.articleId;
+			   scrapperUrl = scrapperUrl+"/meta/article/"+data.articleId;
 			   ///scrapper/artice/data.articleId;
 			   console.log('scrapperUrl'+ scrapperUrl);
 			   $scope.articleUrl = scrapperUrl;

@@ -1,5 +1,7 @@
 package com.bperalta.simpleblog.data.dao.impl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,7 +33,16 @@ public class UtilDaoImpl implements UtilDao {
 		Query query =getCurrentSession().createSQLQuery("select category, count(article_id) from Article where type = :type group by category");
 		query.setParameter("type", type);
 		List<Object[]> rows  =query.list();
-		return rows.stream().map(data -> new CategoryTransfer(data[0].toString(),data[1].toString())).collect(Collectors.toList());
+	//	return rows.stream().map(data -> new CategoryTransfer(data[0].toString(),data[1].toString())).collect(Collectors.toList());
+		List<CategoryTransfer> transfer = new ArrayList<CategoryTransfer>();
+		Iterator<Object[]> iter = rows.iterator();
+		while(iter.hasNext()){
+			Object[] row = iter.next();
+			CategoryTransfer trans = new CategoryTransfer(row[0].toString(),row[1].toString());
+			transfer.add(trans);
+		}
+		
+		return transfer;
 	}
 	
 

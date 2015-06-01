@@ -1,36 +1,44 @@
 <div class="panel panel-default">
 
-	
-	<div class="panel-body"> 
-		<div class="row">
-			<div ng-class="{'col-md-6 col-sm-12 col-xs-12': imageUrl,'col-md-12 col-sm-12 col-xs-12': !imageUrl }">
-				<a ui-sref="article({id: articleId})"> 
-					<img ng-show="imageUrl" ng-src="{{imageUrl}}" class="img-responsive" alt="Responsive image"/>
-				</a> 
+
+	<div class="panel-body">
+		<div class="row reduce-gutter">
+			<div
+				ng-class="{'col-md-6 col-sm-12 col-xs-12 reduce-gutter': imageUrl,'col-md-12 col-sm-12 col-xs-12': !imageUrl }">
+				<a ui-sref="article({id: articleId})"> <img ng-show="imageUrl"
+					ng-src="{{imageUrl}}" class="img-responsive" alt="Responsive image" />
+				</a>
 			</div>
-	
-			<div ng-class="{'col-md-6 col-sm-12 col-xs-12': imageUrl,'col-md-12 col-sm-12 col-xs-12': !imageUrl }">
+
+			<div
+				ng-class="{'col-md-6 col-sm-12 col-xs-12 reduce-gutter': imageUrl,'col-md-12 col-sm-12 col-xs-12': !imageUrl }">
 				<div>
-					<a ui-sref="article({id: articleId})"> 
-					<h2 class="panel-title">{{title}}</h2>
+					<a ui-sref="article({id: articleId})">
+						<h2 class="panel-title">{{title}}</h2>
 					</a>
 				</div>
 				<div>
-					<p><small>
-						<a ui-sref="blog({type:type,category:all,page:null})">{{type}}</a>  | <a ui-sref="blog({type:type,category:category,page:null})">{{category}}</a>
-		
-					<br/>posted by <a ui-sref="author({authorId:authorId})">{{authorName}}</a> on {{date|date:'MMM dd, yyyy'}}</small>
-					
-					
+					<p>
+						<small> <a
+							ui-sref="blog({type:type,category:all,page:null})">{{type}}</a> |
+							<a ui-sref="blog({type:type,category:category,page:null})">{{category}}</a>
+
+							<br />posted by <a ui-sref="author({authorId:authorId})">{{authorName}}</a>
+							on {{date|date:'MMM dd, yyyy'}}
+						</small>
+
+
 					</p>
 				</div>
-		
-				<div><p>{{description}}</p></div>
-				
-			
+
+				<div>
+					<p>{{description}}</p>
+				</div>
+
+
 			</div>
 
 		</div>
 	</div>
-</div>	
+</div>
 

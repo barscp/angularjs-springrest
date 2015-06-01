@@ -13,7 +13,7 @@ import com.bperalta.simpleblog.data.entity.Article;
 import com.bperalta.simpleblog.service.BlogService;
 
 @Controller
-@RequestMapping(value="scrapper")
+@RequestMapping(value="meta")
 public class SocialMediaScrapperCtrl {
 	Logger logger=LoggerFactory.getLogger(SocialMediaScrapperCtrl.class);
 	@Autowired

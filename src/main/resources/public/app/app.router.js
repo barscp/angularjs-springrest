@@ -16,7 +16,7 @@
 	      templateUrl: "app/shared/static_pages/homeView.html"
 	    })
 	    .state('blog', {
-		      url: "/blog/:type/:category/:page",
+		      url: "/:type/:category/:page",
 		      templateUrl: "app/components/blog/blogListView.html",
 		      controller: "BlogListController"
 		    

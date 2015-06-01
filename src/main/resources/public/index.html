@@ -30,6 +30,7 @@
   
   <script src="assets/libs/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
   <script src="assets/libs/bower_components/angulike/angulike.js"></script>
+  <script src="assets/libs/angularUtils/disqus/dirDisqus.js"></script>
 
 
   <script src="app/app.module.js"></script>
@@ -57,8 +58,6 @@
   <script src="app/shared/categories/categoriesService.js"></script>
   <script src="app/shared/pagination/paginationDirective.js"></script>
  <script src="app/shared/recent/recentArticleDirective.js"></script>
- <script src="app/shared/disqusComment/disqusCommentDirective.js"></script>
- <script src="app/shared/disqusComment/dirDisqus.js"></script>
    <script src="app/shared/loader/myLoadingDisplay.js"></script>
   <script src="app/shared/sidebar/sideNavController.js"></script>
     <!--  script src="app/shared/navigation/navigationDirective.js"></script-->
@@ -86,7 +85,14 @@
   	.ng-enter-active{
   		opacity:1;
   	}
-  	
+  	.reduce-gutter > [class*='col-'] {
+    padding-right:5px;
+    padding-left:5px;
+   }
+ 
+   
+  }
+ 
  
   </style>
 </head>
@@ -96,7 +102,7 @@
 
 	<div class="row">
 		<div class="col-md-1 col-sm-1 hidden-xs "></div>
-		<div class="container col-md-10 col-sm-10 col-xs-12 white_background">
+		<div class="container col-md-10 col-sm-10 col-xs-12 white_background ">
 			
 			<header ng-include="'app/shared/header/header.html'"></header>
 		   	<div class="alert alert-danger" ng-if="errorMessage" >

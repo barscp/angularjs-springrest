@@ -4,18 +4,18 @@
 
 var simpleBlogApp = angular.module('app', [ 'ngRoute', 'ngMessages',
 		'ui.router', 'ngResource', 'ngAnimate', 'ngSanitize', 'ui.bootstrap',
-		'angulike' ]);
+		'angulike','angularUtils.directives.dirDisqus' ]);
 
 simpleBlogApp.run([ '$rootScope', '$state', 'LoginService', 'UserService',
 		function($rootScope, $state, LoginService, UserService) {
 			$rootScope.menu = [ {
-				'key' : 'devnotes',
-				'value' : 'Developer Notes',
-				'icon' : 'fa fa-file-code-o'	
-			}, {
-				'key' : 'snaps',
-				'value' : 'Snap Collection',
+				'key' : 'photography',
+				'value' : 'Photography',
 				'icon':'fa fa-camera-retro'
+			}, {
+				'key' : 'Programming',
+				'value' : 'Programming',
+				'icon' : 'fa fa-file-code-o'
 			},
 
 			{
