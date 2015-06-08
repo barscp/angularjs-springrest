@@ -18,6 +18,12 @@ angular.module("app")
 			type:"@"
 			
 		},
+		controller:function($scope){
+			$scope.removeSpace=function(value){
+				value = value.replace(/ /g,"-");
+				return value;
+			}
+		},
 		templateUrl: "app/shared/articleThumbnail/articleThumbnailView.html"
 		
 	

@@ -8,21 +8,58 @@ var simpleBlogApp = angular.module('app', [ 'ngRoute', 'ngMessages',
 
 simpleBlogApp.run([ '$rootScope', '$state', 'LoginService', 'UserService',
 		function($rootScope, $state, LoginService, UserService) {
-			$rootScope.menu = [ {
-				'key' : 'photography',
-				'value' : 'Photography',
-				'icon':'fa fa-camera-retro'
-			}, {
-				'key' : 'Programming',
-				'value' : 'Programming',
+
+	$rootScope.menu = [ {
+		
+		'key' : 'landscape',
+		'value' : 'Landscape'
+	}, {
+		'key' : 'macro',
+		'value' : 'Macro'
+		},
+	{
+		'key' : 'life',
+		'value' : 'Life'
+	},
+	{
+		'key' : 'blog',
+		'value' : 'Blog'
+	}
+	 ];
+	/**
+	$rootScope.menu = [ {
+		
+				'key' : 'java',
+				'value' : 'Java',
 				'icon' : 'fa fa-file-code-o'
+			}, {
+				'key' : 'javascript',
+				'value' : 'Javascript',
+				'icon' : 'fa fa-file-code-o'
+			},
+
+			{
+				'key' : 'data',
+				'value' : 'Data',
+				'icon' : 'fa fa-database'
+			},
+			{
+				'key' : 'tools',
+				'value' : 'Tools',
+				'icon': 'fa fa-wrench'
 			},
 
 			{
 				'key' : 'projects',
 				'value' : 'Projects',
 				'icon': 'fa fa-puzzle-piece'
-			} ];
+			}
+			 ];*/
+			
+			$rootScope.removeSpace=function(value){
+				value = value.replace(/ /g,"-");
+				return value;
+			}
 			console.log('running application...');
 			$rootScope.facebookAppId = '427122720793949';
 			$rootScope.pageSize = 5;
@@ -51,34 +88,7 @@ simpleBlogApp.service('PageTitle', function() {
 		}
 	};
 });
-simpleBlogApp.service('MetaInformation', function() {
-	var metaDescription = '';
-	var metaKeywords = '';
-	return {
-		metaDescription : function() {
-			return metaDescription;
-		},
-		metaKeywords : function() {
-			return metaKeywords;
-		},
-		reset : function() {
-			metaDescription = '';
-			metaKeywords = '';
-		},
-		setMetaDescription : function(newMetaDescription) {
-			metaDescription = newMetaDescription;
-		},
-		appendMetaKeywords : function(newKeywords) {
-			for ( var key in newKeywords) {
-				if (metaKeywords === '') {
-					metaKeywords += newKeywords[key].name;
-				} else {
-					metaKeywords += ', ' + newKeywords[key].name;
-				}
-			}
-		}
-	};
-});
+
 
 simpleBlogApp.factory('myInterceptor', function($q, $rootScope, UserService) {
 	var interceptor = {

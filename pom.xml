@@ -8,7 +8,7 @@
 
 
 <build>
-    <finalName>blog</finalName>
+    <finalName>ROOT</finalName>
     <plugins>
        <plugin>
            <groupId>org.apache.maven.plugins</groupId>
@@ -113,13 +113,12 @@
 			<scope>provided</scope>
 		</dependency>
 
-		
-
-  <!-- Thymeleaf -->
-	<dependency>
-            <groupId>org.springframework.boot</groupId>
+	  <!-- Thymeleaf -->
+		<dependency>
+   	         <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
+		
     </dependencies>
 
 

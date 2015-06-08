@@ -9,7 +9,7 @@
 			<p><small>
 		   	<a ui-sref="blog({type:article.type,category:all,page:null})">{{article.type}}</a>  | <a ui-sref="blog({type:article.type,category:article.category,page:null})">{{article.category}}</a>
 			<br/>
-			  posted by <a ui-sref="author({authorId:article.author.authorId})">{{article.author.firstName}} {{article.author.lastName}}</a> on {{article.dateCreated|date:'MMM dd, yyyy'}}
+			  posted by <a ui-sref="author({authorId:article.author.authorId, name: removeSpace(article.author.firstName)+'-'+removeSpace(article.author.lastName)})">{{article.author.firstName}} {{article.author.lastName}}</a> on {{article.dateCreated|date:'MMM dd, yyyy'}}
 				</small></p>
 		</div>
 		<div><p>{{article.description}}</p></div>		

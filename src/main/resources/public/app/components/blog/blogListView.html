@@ -1,23 +1,21 @@
 <!-- will contain a list of short articles -->
 
 <div my-loading-display load-indicator="loadingBlogList"></div>
- <div class="row"  ng-repeat="article in articleList" >
- 
-   <div class="col-md-12" >
-   	 <div my-article-thumbnail 
-  	 	article-id="{{article.articleId}}"
-  	 	title="{{article.title}}" 
-  	 	date="{{article.dateCreated}}" 
-  	 	description="{{article.description}}" 
-  	 	image-url="{{article.imageUrl}}" 
-      author-name="{{article.author.firstName}} {{article.author.lastName}}"
-      author-id="{{article.author.authorId}}"
-      category="{{article.category}}"
-      type="{{article.type}}"
-  	 	></div>
-  </div>
- </div>
- 
-<div align="center" my-pagination blog-type="{{blogType}}" category="{{category}}" 
-count-articles="{{countArticles}}" page-size="{{pageSize}}" page-number="{{pageNumber}}"></div>
- 
+<div ng-repeat="article in articleList">
+	<div class="row">
+		<div class="col-md-12" >
+			<div my-article-thumbnail article-id="{{article.articleId}}"
+				title="{{article.title}}" date="{{article.dateCreated}}"
+				description="{{article.description}}"
+				image-url="{{article.imageUrl}}"
+				author-name="{{article.author.firstName}} {{article.author.lastName}}"
+				author-id="{{article.author.authorId}}"
+				category="{{article.category}}" type="{{article.type}}"></div>
+		</div>
+	</div>
+</div>
+
+<div align="center" my-pagination blog-type="{{blogType}}"
+	category="{{category}}" count-articles="{{countArticles}}"
+	page-size="{{pageSize}}" page-number="{{pageNumber}}"></div>
+

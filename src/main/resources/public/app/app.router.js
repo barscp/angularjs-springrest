@@ -16,20 +16,20 @@
 	      templateUrl: "app/shared/static_pages/homeView.html"
 	    })
 	    .state('blog', {
-		      url: "/:type/:category/:page",
+		      url: "/menu/:type/:category/:page",
 		      templateUrl: "app/components/blog/blogListView.html",
 		      controller: "BlogListController"
 		    
 		    	  
 		}).state('author', {
-		      url: "/author/:authorId",
+		      url: "/author/:authorId/:name",
 		      templateUrl: "app/components/author/authorView.html",
 		      controller: "AuthorController"
 		      
 		    	  
 		})    
 	    .state('article', {
-		     url: "/article/:id",
+		     url: "/article/:id/:title",
 		     templateUrl: "app/components/article/articleView.html",
 		     controller: "ArticleController"
 		   

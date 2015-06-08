@@ -43,12 +43,12 @@ angular.module("app")
 			   var port = $location.port();
 			   
 			   var scrapperUrl = protocol+"://"+host;
-			   if(port){
-				   scrapperUrl = scrapperUrl+":"+port;
-			   }
-			   scrapperUrl = scrapperUrl+"/meta/article/"+data.articleId;
+//			   if(port){
+//				   scrapperUrl = scrapperUrl+":"+port;
+//			   }
+			   scrapperUrl = scrapperUrl+"/scrapper/article/"+data.articleId;
 			   ///scrapper/artice/data.articleId;
-			   console.log('scrapperUrl'+ scrapperUrl);
+			   console.log('scrapperUrl:'+ scrapperUrl);
 			   $scope.articleUrl = scrapperUrl;
 			 //  $scope.articleUrl =$location.absUrl()
 				 

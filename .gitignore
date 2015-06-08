@@ -3,3 +3,4 @@ src/main/resources/public/assets/libs/bower_components
 .settings/
 .project
 /target/
+/target/

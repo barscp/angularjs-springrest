@@ -1,17 +1,40 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta property="og:title" th:content="${title}" />
-  <meta property="og:site_name" th:content="${siteName}"/>
-  <meta property="og:url" th:content="${url}"/>
-  <meta property="og:description" th:content="${description}" />
-  <meta property="og:image" th:content="${image}" />
-  <meta property="og:type" content="article" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta property="og:title" th:content="${title}" />
+<meta property="og:site_name" th:content="barscp.com" />
+<meta property="og:url" th:content="${url}" />
+<meta property="og:description" th:content="${description}" />
+<meta property="og:image" th:content="${image}" />
+<meta property="og:type" content="article" />
 <title>Server side page for social media scrapper</title>
 </head>
 <body>
-  This is a page for social media scrapper, you should not be seeing this. if you to kindly email me at bars_cp@yahoo.com
-  
+	This is a page for social media scrapper, you should not be seeing
+	this. if you to kindly email me at bars_cp@yahoo.com
+
+
+
+	<div itemscope="" itemtype="http://schema.org/Blog">
+		<div itemprop="name">
+
+			<span th:text="${title}">Some title here</span>
+		</div>
+		<div itemprop="blogPost"><span th:text="${description}">
+				some description hear</span>
+				 <span itemprop="author">
+				 	<span th:text="${author}"></span></span>
+				  <span itemprop="url"><span
+					th:text="${url}"></span>
+					</span> 
+		
+			 <div th:if="${image!=null}">
+			 <img itemprop="thumbnailUrl"
+				th:src="${image}" />
+				</div>
+			
+			</div>
+	</div>
 </body>
 </html>

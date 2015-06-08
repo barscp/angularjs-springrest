@@ -1,6 +1,6 @@
 
 <div ng-controller="HeaderController">
-	<div align="right" >
+	<!-- div align="right" >
 		
 		<span  ng-if="loginUser">
 		Welcome back <a ui-sref="author({authorId:user.authorId})">{{user.name}}</a>!&nbsp;&nbsp;
@@ -9,10 +9,10 @@
 		 <i ng-if="signoutLoading==true" class="fa fa-refresh fa-spin"></i>
 		 	
 	  </span>
-	  <span ng-if = "!loginUser">
+	  < span ng-if = "!loginUser">
 		<a href="#" ui-sref="login">
 		Sign in</i></a></span>
-	</div> 
+	</div--> 
 
 <nav class="navbar navbar-default">
   <div>
@@ -23,9 +23,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-       <a class="navbar-brand" ui-sref="home"><b>
-     
-      	{ barscp }</b>
+       <a class="navbar-brand" ui-sref="home">
+  <!--    <i class="fa fa-file-code-o"></i> DevNotes -->
+  <div>
+  <img src="../../../assets/img/bp.png" width="25" height="25" />
+        Photography</div>
         </a>
     </div>
    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -35,8 +37,7 @@
 	        
 	        <a ui-sref="blog({type:item.key, category:'all', page:null})" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 	        <i ng-class="item.icon"></i>
-	        
-	         <b> {{item.value}}</b>
+	        {{item.value}}
 	        </a>
 	      
 	      
@@ -53,9 +54,17 @@
 	                     </button>
 	      			</span>
 	        	</div>
+	        	<div  class="input-group">&nbsp;</div>
+               <span ng-if = "!loginUser"> <a   href="#" ui-sref="login"> Sign-in
+               </a></span>
+            	<span ng-if = "loginUser"><a   href="#" ng-click="logout()">
+				Sign out </a>
+			 	<i ng-if="signoutLoading==true" class="fa fa-refresh fa-spin"></i>
+		 	</span>
 			</form>
 		</div>
 	</div>	
+	 
 	
 </div>
 </nav>
