@@ -14,4 +14,5 @@ create articles for
     2 Stolen shots
  
  
- Implement home to contain the recent articles   
+ Implement home to contain the recent articles
+ test readme   
