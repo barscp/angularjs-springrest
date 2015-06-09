@@ -9,24 +9,8 @@ var simpleBlogApp = angular.module('app', [ 'ngRoute', 'ngMessages',
 simpleBlogApp.run([ '$rootScope', '$state', 'LoginService', 'UserService',
 		function($rootScope, $state, LoginService, UserService) {
 
-	$rootScope.menu = [ {
-		
-		'key' : 'landscape',
-		'value' : 'Landscape'
-	}, {
-		'key' : 'macro',
-		'value' : 'Macro'
-		},
-	{
-		'key' : 'life',
-		'value' : 'Life'
-	},
-	{
-		'key' : 'blog',
-		'value' : 'Blog'
-	}
-	 ];
-	/**
+
+	
 	$rootScope.menu = [ {
 		
 				'key' : 'java',
@@ -50,11 +34,11 @@ simpleBlogApp.run([ '$rootScope', '$state', 'LoginService', 'UserService',
 			},
 
 			{
-				'key' : 'projects',
-				'value' : 'Projects',
+				'key' : 'misc',
+				'value' : 'Misc',
 				'icon': 'fa fa-puzzle-piece'
 			}
-			 ];*/
+			 ];
 			
 			$rootScope.removeSpace=function(value){
 				value = value.replace(/ /g,"-");
@@ -131,3 +115,43 @@ simpleBlogApp.factory('myInterceptor', function($q, $rootScope, UserService) {
 simpleBlogApp.config(function($httpProvider) {
 	$httpProvider.interceptors.push('myInterceptor');
 });
+
+function replaceText(str)
+{
+    var str1 = String(str);
+    return str1.replace(/\n/g,"<br/>");
+}
+
+simpleBlogApp.directive('prettyprint', function() {
+    return {
+        restrict: 'AC',
+        link: function (scope, element, attrs) {
+              element.html(prettyPrintOne(element.html(),'',true));
+        }
+    };
+});
+simpleBlogApp.directive('compile', ['$compile', function ($compile) {
+    return function(scope, element, attrs) {
+        var ensureCompileRunsOnce = scope.$watch(
+          function(scope) {
+             // watch the 'compile' expression for changes
+            return scope.$eval(attrs.compile);
+          },
+          function(value) {
+            // when the 'compile' expression changes
+            // assign it into the current DOM
+            element.html(value);
+
+            // compile the new DOM and link it to the current
+            // scope.
+            // NOTE: we only compile .childNodes so that
+            // we don't get into infinite loop compiling ourselves
+            $compile(element.contents())(scope);
+
+            // Use un-watch feature to ensure compilation happens only once.
+            ensureCompileRunsOnce();
+          }
+      );
+  };
+}]);
+

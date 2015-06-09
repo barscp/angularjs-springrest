@@ -44,6 +44,7 @@ public class ArticleDaoImpl extends HibernateDaoImpl<Article, Long> implements A
 		if(!StringUtils.isEmpty(category)){
 			criteria.add(Restrictions.eq("category", category));
 		}
+		criteria.add(Restrictions.eq("isPublished", "Y"));
 		criteria.setFirstResult((pageNumber-1)*pageSize);
 		criteria.setMaxResults(pageSize);
 		criteria.addOrder(Order.desc("articleId"));
@@ -53,9 +54,9 @@ public class ArticleDaoImpl extends HibernateDaoImpl<Article, Long> implements A
 	@Override
 	public int countArticles(String type, String category) {
 		StringBuffer sql = new StringBuffer();
-		sql.append("select count(article_id) from Article ");
+		sql.append("select count(article_id) from Article where is_published ='Y'");
 		if(!StringUtils.isEmpty(type)){
-			sql.append("where type = :type ");
+			sql.append("and type = :type ");
 			if(!StringUtils.isEmpty(category)){
 				sql.append("and category = :category");
 			}
@@ -81,12 +82,17 @@ public class ArticleDaoImpl extends HibernateDaoImpl<Article, Long> implements A
 	public List<Article> searchArticles(String searchKey, Integer pageNumber,
 			Integer pageSize) {
 		Criteria criteria= getCurrentSession().createCriteria(Article.class);
-		Criterion title = Restrictions.ilike("title", searchKey, MatchMode.ANYWHERE);
-		Criterion category = Restrictions.ilike("category", searchKey, MatchMode.ANYWHERE);
-		Criterion description = Restrictions.ilike("description", searchKey,MatchMode.ANYWHERE);
-		criteria.add(Restrictions.or(title,category,description));
-
 		
+		if("unpublished".equals(searchKey)){
+			criteria.add(Restrictions.ne("isPublished", "Y"));
+			
+		}else{
+			Criterion title = Restrictions.ilike("title", searchKey, MatchMode.ANYWHERE);
+			Criterion category = Restrictions.ilike("category", searchKey, MatchMode.ANYWHERE);
+			Criterion description = Restrictions.ilike("description", searchKey,MatchMode.ANYWHERE);
+			criteria.add(Restrictions.or(title,category,description));
+			criteria.add(Restrictions.eq("isPublished", "Y"));
+		}
 		criteria.setFirstResult((pageNumber-1)*pageSize);
 		criteria.setMaxResults(pageSize);
 		criteria.addOrder(Order.desc("articleId"));
@@ -98,14 +104,20 @@ public class ArticleDaoImpl extends HibernateDaoImpl<Article, Long> implements A
 	public int countSearchArticles(String searchKey) {
 		Criteria criteria= getCurrentSession().createCriteria(Article.class);
 		criteria.setProjection(Projections.rowCount());
-		Criterion title = Restrictions.ilike("title", searchKey, MatchMode.ANYWHERE);
-		Criterion category = Restrictions.ilike("category", searchKey, MatchMode.ANYWHERE);
-		Criterion description = Restrictions.ilike("description", searchKey,MatchMode.ANYWHERE);
-		criteria.add(Restrictions.or(title,category,description));
-		
+		if("unpublished".equals(searchKey)){
+			criteria.add(Restrictions.ne("isPublished", "Y"));
+			
+		}else{
+			Criterion title = Restrictions.ilike("title", searchKey, MatchMode.ANYWHERE);
+			Criterion category = Restrictions.ilike("category", searchKey, MatchMode.ANYWHERE);
+			Criterion description = Restrictions.ilike("description", searchKey,MatchMode.ANYWHERE);
+			criteria.add(Restrictions.or(title,category,description));
+			criteria.add(Restrictions.eq("isPublished", "Y"));
+		}
 		List<Long> result  =criteria.list();
 		return result.get(0).intValue();
 	}
+
 
 
 

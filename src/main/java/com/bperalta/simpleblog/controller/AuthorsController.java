@@ -82,6 +82,7 @@ public class AuthorsController {
 		logger.info("user:"+ user.getName());
 		Author author = blogService.findAuthor(authorId);
 		article.setAuthor(author);
+		article.setIsPublished("N");
 	
 		//validated author
 		//get author by name

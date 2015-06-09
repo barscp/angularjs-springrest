@@ -38,7 +38,7 @@ angular.module('app')
 			    		 });
 			    		
 			    	 }else {
-			    		console.log('categor is not null'); 
+			    		console.log('category is not null'); 
 			    		BlogService.query({type:$stateParams.type,category:$stateParams.category,page:page},function(data,header){
 			    			 $scope.articleList = data;
 			    			 $scope.countArticles = header('CountArticles');

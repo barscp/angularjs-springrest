@@ -11,5 +11,4 @@ public interface ArticleDao extends BaseDao<Article, Long> {
     
     public List<Article> searchArticles(String searchKey, Integer pageNumber, Integer pageSize);
     public int countSearchArticles(String searchKey);
-    
 }

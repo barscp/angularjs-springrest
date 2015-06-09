@@ -1,7 +1,7 @@
 <!-- will contain a list of short articles -->
 
 <div my-loading-display load-indicator="loadingBlogList"></div>
-<div ng-repeat="article in articleList">
+<div ng-repeat="article in articleList track by article.articleId">
 	<div class="row">
 		<div class="col-md-12" >
 			<div my-article-thumbnail article-id="{{article.articleId}}"
@@ -15,6 +15,9 @@
 	</div>
 </div>
 
+	<div class="alert alert-info" ng-if="articleList && articleList.length ==0" >
+					Oops, there is no published article for this query.
+				</div>
 <div align="center" my-pagination blog-type="{{blogType}}"
 	category="{{category}}" count-articles="{{countArticles}}"
 	page-size="{{pageSize}}" page-number="{{pageNumber}}"></div>

@@ -1,17 +1,19 @@
 
 <div ng-controller="SideNavController">
-<div class="panel panel-default"   ng-if="user">
+	<div class="panel panel-default" ng-if="user">
 
-<div class="panel-body" align="center"> 
-<a ui-sref="article({id: 'new',title:null})"> 
-		Add New Article</a>
-</div>
-</div>
+		<div class="panel-body" align="center">
+			<a ui-sref="article({id: 'new',title:null})"> Add New Article</a><br/>
+			<a ui-sref="blog({type: 'search',category:'unpublished',page:null})"> View unpublished articles</a>
+
+		</div>
+		
+	</div>
 
 
-<div my-category-tags blog-type="{{blogType}}"></div>
+	<div my-category-tags blog-type="{{blogType}}"></div>
 
-<div recent-articles></div>
+	<div recent-articles></div>
 
 </div>
 

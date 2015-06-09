@@ -1,10 +1,10 @@
 
 <div class="panel panel-default">
 	<div class="panel-body">
-		<div class="panel-title">recent articles on {{host}}</div>
+		<div class="panel-title"><small>recent articles on {{host}}</small></div>
 
 <ul>
-		<li ng-repeat="article in articles">
+		<li ng-repeat="article in articles track by article.articleId">
 			 <a
 				ui-sref="article({id:article.articleId, title: removeSpace(article.title)})">{{article.title}}
               <small>   - {{article.type}}- {{article.dateCreated|date:'MMM dd, yyyy'}}</small></a>

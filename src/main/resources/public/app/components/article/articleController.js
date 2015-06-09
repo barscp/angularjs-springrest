@@ -1,5 +1,5 @@
 angular.module("app")
-.controller("ArticleController",['$rootScope','$scope','$stateParams','$state','$location','UserService','PageTitle','ArticleService', function($rootScope,$scope,$stateParams,$state,$location,UserService,PageTitle,ArticleService){
+.controller("ArticleController",['$rootScope','$scope','$stateParams','$state','$location','UserService','PageTitle','ArticleService','AuthorService', function($rootScope,$scope,$stateParams,$state,$location,UserService,PageTitle,ArticleService,AuthorService){
 	
 	 console.log("stateParams:"+ $stateParams.id);
 	 $scope.editMode=false;
@@ -20,7 +20,32 @@ angular.module("app")
 		 console.log("view mode");
 			
 	 }
-	 	
+	 $scope.publish = function(value){
+		 $scope.publishLoading=true;  
+		 console.log('publish:'+value);
+		 if(value==true){
+			 $scope.article.isPublished='Y';
+		 }else {
+			 $scope.article.isPublished='N';
+					 
+		 }
+		 var articleName=$scope.article.title.replace(/ /g,"-");
+			
+		 var user = UserService.getLoginUser();
+		 AuthorService.updateArticle({authorId:user.authorId, articleId:$scope.article.articleId},JSON.stringify($scope.article), function(data,headers){
+				console.log("update success");
+				console.log("location: "+headers('Location'))
+				var returnId = headers('Location').split('/').pop();
+				$state.go("^.article",{id:returnId,name:articleName});
+				$scope.publishLoading=false; 
+				$scope.setViewMode();
+			},
+			function(error){
+				console.log("update error");
+				$scope.publishLoading=false; 
+				
+			});
+	 }	
 	 if($stateParams.id == 'new'){
 		 $scope.isNew=true;
 		 console.log("well this is new");

@@ -30,7 +30,7 @@ public class UtilDaoImpl implements UtilDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<CategoryTransfer> getCategoriesByType(String type){
-		Query query =getCurrentSession().createSQLQuery("select category, count(article_id) from Article where type = :type group by category");
+		Query query =getCurrentSession().createSQLQuery("select category, count(article_id) from Article where is_published='Y' and type = :type group by category");
 		query.setParameter("type", type);
 		List<Object[]> rows  =query.list();
 	//	return rows.stream().map(data -> new CategoryTransfer(data[0].toString(),data[1].toString())).collect(Collectors.toList());
