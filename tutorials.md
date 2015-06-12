@@ -16,5 +16,5 @@ what's the best way to manage version and environment controll in maven?
 
 
 Read from local jason for the menu depending on the environment.
-- menu
+- menu 
 - build type

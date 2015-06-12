@@ -35,7 +35,7 @@ public class Login implements UserDetails
 	@Column(name="login_id", nullable=false)
 	private Long loginId;
 
-	@Column(unique = true, length = 16, nullable = false)
+	@Column(unique = true, length = 100, nullable = false)
 	private String username;
 
 	public void setUsername(String username) {

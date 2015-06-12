@@ -28,7 +28,7 @@ public class Author {
 	@Column(name="last_name", length=100)
 	private String lastName;
 	
-	@Column(name="email", length=100)
+	@Column(name="email", length=100,unique=true)
 	private String email;
 	
 	@Column(name="description", length=1000)
@@ -51,7 +51,7 @@ public class Author {
 
 
     @JsonIgnore
-	@OneToOne(optional=true,fetch=FetchType.LAZY)
+	@OneToOne(optional=true,fetch=FetchType.EAGER)
 	@JoinColumn(name="login_id")
 	private Login userLogin;
 	

@@ -19,6 +19,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
 
+
+
+
 //import com.bperalta.simpleblog.data.dao.UserDao;
 import com.bperalta.simpleblog.data.entity.Article;
 import com.bperalta.simpleblog.data.entity.Author;
@@ -26,13 +29,17 @@ import com.bperalta.simpleblog.data.entity.Author;
 import com.bperalta.simpleblog.data.entity.Login;
 //import com.bperalta.simpleblog.data.entity.User;
 import com.bperalta.simpleblog.service.BlogService;
+import com.sendgrid.SendGrid;
+import com.sendgrid.SendGridException;
 
 @RestController
 @RequestMapping(value="authors")
 public class AuthorsController {
 	Logger logger=LoggerFactory.getLogger(ArticleController.class);
 
-
+	@Autowired 
+	SendGrid sendgrid;
+	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
@@ -121,40 +128,60 @@ public class AuthorsController {
 	}
 	
 
+	@RequestMapping(value="create/{email}/{firstName}", method=RequestMethod.POST)
+	public  ResponseEntity<Void>  createUser( @PathVariable("email") String email,@PathVariable("firstName") String firstName ){
+	
+		logger.info("creating user email"+email);
+		logger.info("creating user firstName"+firstName);
+		
+		//check username
+		
+		//check email
+		
+		//generate password
+		//insert record
+		
+		//send email
+		String newPassword= "pswd"+(int)Math.ceil(Math.random()*100)+""+(int)Math.ceil(Math.random()*100);
+		Login user = new Login(email, passwordEncoder.encode(newPassword));
+		user.addRole("USER");
+		blogService.saveUser(user);
+		Author author = new Author();
+		author.setFirstName(firstName);
+		author.setUserLogin(user);
+		author.setEmail(email);
+		blogService.saveAuthor(author);	
+		
+		String host = ServletUriComponentsBuilder.fromCurrentRequest().build().getHost(); 
+		String domain = "http://"+host; 
+		SendGrid.Email emailer = new SendGrid.Email();
+		emailer.addTo(email);
+		emailer.setFrom("no_reply@"+host);
+		emailer.setSubject("Account has been created on "+domain);
+		emailer.setHtml("Your temporary password is "+newPassword
+		 		+ "<br/> Please update your profile info and change your temporary password as soon as you can :) <br/> Logon to "+domain);
+
+		 try {
+			 SendGrid.Response response = sendgrid.send(emailer);
+			 logger.info("email response status: "+response.getStatus());
+			 if(response.getStatus()!=true){
+				 logger.info("failed sending email"+response.getMessage());
+				 return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+			 }
+		 } catch (SendGridException e) {
+			 logger.error("error sending email", e);
+			 e.printStackTrace();
+			 return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+		 }
+		
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
 	
 	@RequestMapping(value="init",method=RequestMethod.GET)
 	public String getAll(){
-//		Login login = new Login();
-//		login.setIsActive("y");
-//		login.setIsBanned("n");
-//		login.setPassword("password");
-//		login.setUsername("bars_cp");
-//		blogService.saveLogin(login);
-//		
-//		
-		Login user = new Login("cocoy", passwordEncoder.encode("password"));
-		user.addRole("ADMIN");
-		user.addRole("USER");
-		blogService.saveUser(user);
-		
-		Author author = new Author();
-		author.setFirstName("Robert Benedict");
-		author.setLastName("Peralta");
-		author.setUserLogin(user);
-		author.setEmail("bars_cp@yahoo.com");
-		author.setWebsiteUrl("https://sg.linkedin.com/in/barryperalta");
-		author.setDescription("I'm a cute lil baby boy");
-		author.setProfileImgUrl("http://i.imgur.com/tAlPtC4.jpg");
-	    blogService.saveAuthor(author);		
-//		logger.info("init author id:"+author.getAuthorId());
-//
-//		logger.info("init login id:"+login.getLoginId());
-//	
-		//User user = new User("cocoy", "password");
-	
-		//User user1 = new User("barry", "password");
-		Login user1 = new Login("barry", passwordEncoder.encode("password"));
-		user1.addRole("USER");
+
+		Login user1 = new Login("bars_cp@yahoo.com", passwordEncoder.encode("password"));
+		user1.addRole("ADMIN");
 		blogService.saveUser(user1);
 		
 		Author author1 = new Author();
@@ -166,9 +193,8 @@ public class AuthorsController {
 		author1.setDescription("Java Developer from Singapore");
 		author1.setProfileImgUrl("http://i.imgur.com/Pw6naNJ.jpg");
 	    blogService.saveAuthor(author1);		
-//		userDao.save(userUser);
-		
-		return "init at get"+author.getFirstName();
+
+		return "init";
 		
 	
 	}

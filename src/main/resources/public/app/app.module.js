@@ -12,28 +12,32 @@ simpleBlogApp.run([ '$rootScope', '$state', 'LoginService', 'UserService',
 
 	
 	$rootScope.menu = [ {
-		
+				'id':'1',
 				'key' : 'java',
 				'value' : 'Java',
 				'icon' : 'fa fa-file-code-o'
 			}, {
+				'id':'2',
 				'key' : 'javascript',
 				'value' : 'Javascript',
 				'icon' : 'fa fa-file-code-o'
 			},
 
 			{
+				'id':'3',
 				'key' : 'data',
 				'value' : 'Data',
 				'icon' : 'fa fa-database'
 			},
 			{
+				'id':'4',
 				'key' : 'tools',
 				'value' : 'Tools',
 				'icon': 'fa fa-wrench'
 			},
 
 			{
+				'id':'5',	
 				'key' : 'misc',
 				'value' : 'Misc',
 				'icon': 'fa fa-puzzle-piece'

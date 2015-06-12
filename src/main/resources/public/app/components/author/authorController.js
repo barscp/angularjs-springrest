@@ -29,6 +29,10 @@ angular.module("app")
 		console.log('error loading author info');
 		$scope.loadingAuthor = false;
 	});
+	
+	$scope.doTheBack = function() {
+		  window.history.back();
+		};
 }])
 
 

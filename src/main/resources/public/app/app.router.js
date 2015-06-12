@@ -40,8 +40,18 @@
 		    	  
 		}).state('changePassword',{
 			url:"/change-password",
-			templateUrl:"/app/components/change-password/changePasswordView.html"
-		});  
+			templateUrl:"/app/components/change-password/changePasswordView.html",
+			controller: "ChangePasswordController"
+		}).state('resetPassword',{
+			url:"/reset-password",
+			templateUrl:"/app/components/reset-password/resetPasswordView.html",
+			controller: "ResetPasswordController"	
+		}).state('createAuthor',{
+			url:"/create-author",
+			templateUrl:"/app/components/create-author/createAuthorView.html",
+			controller: "CreateAuthorController"	
+		});
+		  
 	 /** 
 	  * this is for removing hashbang, study further
 	  * $locationProvider.html5Mode(true);

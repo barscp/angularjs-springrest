@@ -1,0 +1,45 @@
+<div class="panel panel-default" ng-show="user.isAdmin">
+	
+	<div class="panel-body" >
+	<form name="frm" ng-submit="createAuthor()" novalidate>
+		<div class="alert alert-success" ng-show="message">
+					{{message}}
+			</div>
+			<div class="alert alert-danger" ng-show="error">
+					{{error}}
+			</div>
+		
+		
+		<div class="form-group">
+			<label for="email">Email Address</label>
+			<input name="email" type="email" class="form-control" id="email" ng-model="email" required > 
+			<div ng-if="frm.submitted" ng-messages="frm.email.$error">
+									<div ng-messages-include="app/components/error/errors.html"/>							  
+							  </div> 
+		</div>
+		<div class="form-group">
+			<label for="firstName">First Name</label>
+			<input name="firstName" type="text" class="form-control" id="firstName" ng-model="firstName" required > 
+			<div ng-if="frm.submitted" ng-messages="frm.firstName.$error">
+									<div ng-messages-include="app/components/error/errors.html"/>							  
+							  </div> 
+		</div>
+		
+	
+		
+
+				<button type="button" ng-click="doTheBack()" class="btn btn-primary" >Back </i></button>
+			<button type="submit" class="btn btn-primary" >Save <i class="glyphicon glyphicon-floppy-disk"> <span  ng-show="createLoading==true"><i class="fa fa-refresh fa-spin"></i></span></i></button>
+		
+		
+			    
+	</form>
+	</div>
+	
+	
+
+</div>
+	<div class="alert alert-danger" ng-show="!user.isAdmin">
+					Only admin can perform this task.
+			</div>
+		

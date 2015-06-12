@@ -33,8 +33,8 @@ public class BlogServiceImpl implements BlogService{
 	@Autowired
 	private AuthorDao authorDao;
 	
-//	@Autowired
-//	private LoginDao loginDao;
+	@Autowired
+	private LoginDao loginDao;
 	
 	@Autowired
 	private LoginDao userDao;
@@ -58,7 +58,10 @@ public class BlogServiceImpl implements BlogService{
 		authorDao.save(author);
 		return author.getAuthorId();
 	}
-	
+
+	public Author findAuthorByEmail(String emailAddress) {
+		return authorDao.findAuthorByEmail(emailAddress);
+	}
 
 	@Override
 	public Long saveArticle(Article article) {
@@ -77,12 +80,9 @@ public class BlogServiceImpl implements BlogService{
 		
 		
 	}
+	
 
-//	@Override
-//	public Long saveLogin(Login login) {
-//		loginDao.save(login);
-//		return login.getLoginId();
-//	}
+
 
 	@Override
 	public Author findAuthor(Long i) {
@@ -102,6 +102,12 @@ public class BlogServiceImpl implements BlogService{
 		userDao.save(user);
 		
 	}
+	@Override
+	 public void updateLogin(Login login){
+		loginDao.update(login);
+		
+	}
+
 
 	@Override
 	public Login findLoginByUsername(String username) {

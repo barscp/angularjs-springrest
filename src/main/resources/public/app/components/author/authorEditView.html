@@ -5,6 +5,14 @@
 		<div class="alert alert-danger" ng-if="frm.submitted && frm.$invalid" >
 					Validation error encountered.
 				</div>
+				
+		<div class="form-group">
+			<label for="email">Email/User ID</label>
+			<input name="email" type="email" ng-disabled="true" class="form-control" id="email" ng-model="authorInfo.email" required > 
+			<div ng-if="frm.submitted" ng-messages="frm.email.$error">
+									<div ng-messages-include="app/components/error/errors.html"/>							  
+							  </div> 
+		</div>		
 		<div class="form-group">
 			<label for="profileImgUrl">Profile Photo</label>
 			<input name="profileImgUrl" type="text" class="form-control" id="profileImgUrl" ng-model="authorInfo.profileImgUrl" > 
@@ -23,15 +31,9 @@
 									<div ng-messages-include="app/components/error/errors.html"/>							  
 							  </div> 
 		</div>
-			<div class="form-group">
-			<label for="email">Email</label>
-			<input name="email" type="email" class="form-control" id="email" ng-model="authorInfo.email" required > 
-			<div ng-if="frm.submitted" ng-messages="frm.email.$error">
-									<div ng-messages-include="app/components/error/errors.html"/>							  
-							  </div> 
-		</div>
+		
 		<div class="form-group">
-			<label for="websiteUrl">Email</label>
+			<label for="websiteUrl">Website</label>
 			<input name="websiteUrl" type="url" class="form-control" id="websiteUrl" ng-model="authorInfo.websiteUrl" required > 
 			<div ng-if="frm.submitted" ng-messages="frm.websiteUrl.$error">
 									<div ng-messages-include="app/components/error/errors.html"/>							  
@@ -48,7 +50,8 @@
 	
 		
 
-		<div ng-if="user.isAdmin || authorInfo.authorId == user.authorId"">
+		<div ng-if="authorInfo.authorId == user.authorId"">
+			<button type="button" class="btn btn-primary" ui-sref="author({authorId:authorInfo.authorId,name: authorInfo.firstName})"> Back</button>
 			<button type="submit" class="btn btn-primary" ng-disabled="saveLoading">Save  <span  ng-show="saveLoading==true"><i class="fa fa-refresh fa-spin"></i></span></button>
 			
 	</div>

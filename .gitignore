@@ -1,6 +1,8 @@
 target/
+/target/
 src/main/resources/public/assets/libs/bower_components
 .settings/
 .project
-/target/
-/target/
+src/main/java/com/bperalta/simpleblog/config.properties
+src/main/java/com/bperalta/simpleblog/applicationContext-aws.xml
+src/main/java/com/bperalta/simpleblog/applicationContext-dgocean.xml

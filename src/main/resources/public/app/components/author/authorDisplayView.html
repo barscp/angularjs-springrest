@@ -7,11 +7,16 @@
 		<div ng-bind-html="authorInfo.description"></div>
 		
 		
-		<div ng-if="user.isAdmin || authorInfo.authorId == user.authorId"">
+		
+		
+		<div ng-if="authorInfo.authorId == user.authorId"">
 			<br/>
-			<button type="button"  ng-click="setEditMode()" class="btn btn-primary">Edit Profile <i class="glyphicon glyphicon-edit"/></button>	<br/><br/>
+			
+			<button type="button"  ng-click="setEditMode()" class="btn btn-primary">Edit Profile <i class="glyphicon glyphicon-edit"/></button>	&nbsp;&nbsp;<br/>
+			<button type="button"  ui-sref="changePassword" class="btn btn-primary">Change Password <i class="glyphicon glyphicon-edit"/></button>	<br/>
 			
 			<!--  button  ui-sref="changePassword" class="btn btn-primary" >Change Password <i class="glyphicon glyphicon-edit"/></button-->	
 		
-		</div> 
+		</div>
+		<button type="button" class="btn btn-primary" ng-click="doTheBack();"> Back</button> 
 		</div>

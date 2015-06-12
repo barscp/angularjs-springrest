@@ -19,6 +19,8 @@ public interface BlogService {
 	public int countArticles(String type, String category);
 	public Long saveAuthor(Author author);
 	public void updateAuthor(Author author);
+
+	public Author findAuthorByEmail(String emailAddress);
 	//public Long saveLogin(Login login);
 	public Author findAuthor(Long i);
 	public Optional<Article> findArticle(Long i);
@@ -28,6 +30,8 @@ public interface BlogService {
 	public List<CategoryTransfer> getCategoriesByType(String type);
 	public void saveUser(Login user);
 	public Login findLoginByUsername(String username);
+	public void updateLogin(Login login);
+	
     public List<Article> searchArticles(String searchKey, Integer pageNumber, Integer pageSize);
     public int countSearchArticles(String searchKey);
 	

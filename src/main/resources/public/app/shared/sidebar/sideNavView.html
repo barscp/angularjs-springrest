@@ -2,10 +2,14 @@
 <div ng-controller="SideNavController">
 	<div class="panel panel-default" ng-if="user">
 
-		<div class="panel-body" align="center">
-			<a ui-sref="article({id: 'new',title:null})"> Add New Article</a><br/>
-			<a ui-sref="blog({type: 'search',category:'unpublished',page:null})"> View unpublished articles</a>
-
+		<div class="panel-body" >
+		<ul>
+			<li><a   ui-sref="author({authorId:user.authorId,name:user.name})">Update Profile</a></li>
+			<li><a ui-sref="article({id: 'new',title:null})"> Add New Article</a><br/></li>
+			<li><a ui-sref="blog({type: 'search',category:'unpublished',page:null})"> View unpublished articles</a></li>
+		
+			<li ng-if="user.isAdmin"><a ui-sref="createAuthor"> Create Author (Admin)</a></li>
+		</ul>
 		</div>
 		
 	</div>

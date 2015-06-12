@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.httpBasic().authenticationEntryPoint(ce);
 		
 		http.httpBasic().and().authorizeRequests()
-				.antMatchers("/index.html","/assets/**","/app/**","/articles/**", "/scrapper/**","/","/socialMediaScrapper.html").permitAll()
+				.antMatchers("/index.html","/assets/**","/app/**","/articles/**","/reset-password", "/scrapper/**","/","/socialMediaScrapper.html").permitAll()
 				.antMatchers(HttpMethod.GET,"/authors/*").permitAll()
 				.anyRequest().authenticated()
 				.and().logout().permitAll()
@@ -52,13 +52,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return repository;
 	}
 
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth)
-			throws Exception {
-	
-		auth.inMemoryAuthentication().withUser("bars").password("password")
-				.roles("USER");
-		
-	
-	}
+//	@Autowired
+//	public void configureGlobal(AuthenticationManagerBuilder auth)
+//			throws Exception {
+//	
+//		auth.inMemoryAuthentication().withUser("bars").password("password")
+//				.roles("USER");
+//		
+//	
+//	}
 }
