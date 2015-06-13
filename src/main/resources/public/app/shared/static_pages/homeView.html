@@ -1,4 +1,6 @@
-		<div class="jumbotron">
-		 <h2>Simplicity is the soul of efficiency.</h2>
-		  <p> --Austin Freeman</p>
+
+
+		<div ng-repeat="item in menu track by item.id" ui-sref-active="active">
+			<div my-category-tags blog-type="{{item.value}}"></div>
 		</div>
+	

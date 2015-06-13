@@ -1,6 +1,9 @@
 angular.module("app")
 .controller("ArticleEditController",['$scope','$state','AuthorService','UserService', function($scope,$state,AuthorService,UserService){
-	
+	$scope.cancelEdit = function(){
+		$state.go("^.article",{id:$scope.article.articleId,name:null});
+		$scope.setViewMode();
+	}
 	$scope.saveArticle=function(){
 		if($scope.frm.$invalid) {
 				 $scope.frm.submitted=true;
@@ -12,7 +15,7 @@ angular.module("app")
 		var articleName=$scope.article.title.replace(/ /g,"-");
 		
 		var user = UserService.getLoginUser();
-		
+
 		if($scope.article.articleId){
 			AuthorService.updateArticle({authorId:user.authorId, articleId:$scope.article.articleId},JSON.stringify($scope.article), function(data,headers){
 				console.log("update success");

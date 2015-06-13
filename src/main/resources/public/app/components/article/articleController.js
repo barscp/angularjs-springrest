@@ -87,6 +87,9 @@ angular.module("app")
 		  
      } 
 	
+	 $scope.doTheBack = function() {
+		  window.history.back();
+		};
 	
 	
 	

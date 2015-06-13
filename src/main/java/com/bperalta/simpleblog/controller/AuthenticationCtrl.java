@@ -43,6 +43,8 @@ public class AuthenticationCtrl {
 	public ResponseEntity<Void> resetPassword(Principal user, @RequestBody ResetPassword resetPassword){
 		logger.info("reset password...");
 		Login loginInfo =blogService.findLoginByUsername(user.getName());
+		Author author = blogService.findAuthorByEmail(user.getName());
+		
 		if(!passwordEncoder.matches(resetPassword.getCurPassword(),loginInfo.getPassword())){
 			logger.info("password did not match");
 			return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
@@ -60,10 +62,11 @@ public class AuthenticationCtrl {
 			 
 			 
 			 SendGrid.Email email = new SendGrid.Email();
-			 email.addTo(loginInfo.getAuthor().getEmail());
+			 email.addTo(author.getEmail());
 			 email.setFrom("no_reply@"+host);
 			 email.setSubject("Password changed in "+domain);
-			 email.setHtml("You have changed your password in "+domain);
+			 email.setHtml("Hi "+author.getFirstName()+",<br/>You have changed your password in "+domain+"<br/><br/>"
+		 				+ "This is a system generated email, please do not reply. :)");
 
 			 try {
 				 SendGrid.Response response = sendgrid.send(email);
@@ -95,7 +98,7 @@ public class AuthenticationCtrl {
 			 return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);	
 		}
 		//perform password reset
-		Login loginInfo = author.getUserLogin();
+		Login loginInfo = blogService.findLoginByUsername(resetEmail.getEmail());
 		logger.info("retrieve login info:"+loginInfo.getUsername());
 		
 		String newPassword= "pswd"+(int)Math.ceil(Math.random()*100)+""+(int)Math.ceil(Math.random()*100);
@@ -114,7 +117,8 @@ public class AuthenticationCtrl {
 		 email.setFrom("no_reply@"+host);
 		 
 		 email.setSubject("Password reset from "+domain);
-		 email.setHtml("Your temporary password is "+newPassword+". Please change your temporary password as soon as you can :)  ");
+		 email.setHtml("Hi "+author.getFirstName()+",<br/>Your temporary password is "+newPassword+". Please change your temporary password as soon as you can. <br/><br/>"
+	 				+ "This is a system generated email, please do not reply. :)");
 
 		 try {
 			 SendGrid.Response response = sendgrid.send(email);
@@ -141,10 +145,8 @@ public class AuthenticationCtrl {
 			Login loginInfo =blogService.findLoginByUsername(user.getName());
 			logger.info("login id:" + loginInfo.getLoginId());
 			logger.info("login roles:" + loginInfo.getRoles());
-			logger.info("get author:" + loginInfo.getAuthor());
-		
-			
-			UserTransfer userTransfer = new UserTransfer(user.getName(),loginInfo.getAuthor().getAuthorId(),loginInfo.getRoles());
+		    Author author = blogService.findAuthorByEmail(user.getName());
+			UserTransfer userTransfer = new UserTransfer(user.getName(),author.getAuthorId(),loginInfo.getRoles());
 		    return new ResponseEntity<UserTransfer>(userTransfer,HttpStatus.OK);
 		}else {
 			UserTransfer userTransfer = null;

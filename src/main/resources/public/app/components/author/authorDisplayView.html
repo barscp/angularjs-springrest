@@ -1,22 +1,45 @@
-	<div class="jumbotron" ng-if="authorInfo">
-		 <h2>about the author</h2>
-		 <img ng-src="{{authorInfo.profileImgUrl}}" class="img-responsive img-rounded"/> 
-		<div>Name: {{authorInfo.firstName}} {{authorInfo.lastName}}</div>
-		<div>Email: {{authorInfo.email}}</div>
-		<div>{{authorInfo.websiteUrl}}</div>
+
+<div class="panel panel-default">
+	<div class="panel-body">
+		<div class="row">
+		<div class="col-md-4 col-sm-5 col-xs-5">
+		<img ng-src="{{authorInfo.profileImgUrl}}"
+			class="img-responsive img-rounded" />
+		</div>
+		<div class="col-md-8">
+		<h2>about {{authorInfo.firstName}} {{authorInfo.lastName}}</h2>
+		<a target="_blank"  ng-href="{{authorInfo.websiteUrl}}">{{authorInfo.websiteUrl}}</a>
+		</div>
+		
+	</div>
+		
+		
 		<div ng-bind-html="authorInfo.description"></div>
-		
-		
-		
-		
-		<div ng-if="authorInfo.authorId == user.authorId"">
-			<br/>
-			
-			<button type="button"  ng-click="setEditMode()" class="btn btn-primary">Edit Profile <i class="glyphicon glyphicon-edit"/></button>	&nbsp;&nbsp;<br/>
-			<button type="button"  ui-sref="changePassword" class="btn btn-primary">Change Password <i class="glyphicon glyphicon-edit"/></button>	<br/>
-			
-			<!--  button  ui-sref="changePassword" class="btn btn-primary" >Change Password <i class="glyphicon glyphicon-edit"/></button-->	
-		
+
+
+
+	</div>
+	<div class="panel-footer">
+		<div ng-if="authorInfo.authorId == user.authorId">
+			<br />
+
+			<button type="button" ng-click="setEditMode()"
+				class="btn btn-primary">
+				Edit Profile <i class="glyphicon glyphicon-edit" />
+			</button>
+			&nbsp;&nbsp;<br />
+			<button type="button" ui-sref="changePassword"
+				class="btn btn-primary">
+				Change Password <i class="glyphicon glyphicon-edit" />
+			</button>
+			<br />
+
+			<!--  button  ui-sref="changePassword" class="btn btn-primary" >Change Password <i class="glyphicon glyphicon-edit"/></button-->
+
 		</div>
-		<button type="button" class="btn btn-primary" ng-click="doTheBack();"> Back</button> 
-		</div>
+		<button type="button" class="btn btn-primary" ng-click="doTheBack();">
+			Back</button>
+
+	</div>
+</div>
+

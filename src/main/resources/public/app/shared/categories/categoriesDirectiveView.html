@@ -1,7 +1,7 @@
-<div class="panel panel-default" ng-show="categories.length">
+<div class="panel panel-default" ng-show="blogType">
 
 	<div class="panel-body">
-		<div class="panel-title">categories - { {{blogType}} }</div>
+		<div class="panel-title">categories on {{blogType}} </div>
 		<ul>
 			<li ng-repeat="category in categories | orderBy: 'category'"><a
 				ui-sref="blog({type:blogType,category:category.category,page:null})">

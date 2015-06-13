@@ -14,13 +14,11 @@ simpleBlogApp.run([ '$rootScope', '$state', 'LoginService', 'UserService',
 	$rootScope.menu = [ {
 				'id':'1',
 				'key' : 'java',
-				'value' : 'Java',
-				'icon' : 'fa fa-file-code-o'
+				'value' : 'Java'
 			}, {
 				'id':'2',
 				'key' : 'javascript',
-				'value' : 'Javascript',
-				'icon' : 'fa fa-file-code-o'
+				'value' : 'Javascript'
 			},
 
 			{
@@ -32,15 +30,13 @@ simpleBlogApp.run([ '$rootScope', '$state', 'LoginService', 'UserService',
 			{
 				'id':'4',
 				'key' : 'tools',
-				'value' : 'Tools',
-				'icon': 'fa fa-wrench'
+				'value' : 'Tools'
 			},
 
 			{
 				'id':'5',	
 				'key' : 'misc',
-				'value' : 'Misc',
-				'icon': 'fa fa-puzzle-piece'
+				'value' : 'Misc'
 			}
 			 ];
 			

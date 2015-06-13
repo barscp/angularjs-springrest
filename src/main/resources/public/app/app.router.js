@@ -13,7 +13,11 @@
 	    })
 	   .state('home', {
 	      url: "/",
-	      templateUrl: "app/shared/static_pages/homeView.html"
+	      templateUrl: "app/shared/static_pages/homeView.html",
+	      controller: function($rootScope){
+	    	  $rootScope.blogType= null;
+		      	
+	      }
 	    })
 	    .state('blog', {
 		      url: "/menu/:type/:category/:page",

@@ -11,8 +11,7 @@
 				</button>
 				<a class="navbar-brand" ui-sref="home"> <!--    <i class="fa fa-file-code-o"></i> DevNotes -->
 					<div>
-						<img src="../../../assets/img/bp1.png" width="25" height="25" />
-						Developer Notes
+						<img src="../../../assets/img/bp1.png" width="25" height="25" /> DevNotes
 					</div>
 				</a>
 			</div>
@@ -23,7 +22,7 @@
 					<li ng-repeat="item in menu track by item.id" ui-sref-active="active"><a
 						ui-sref="blog({type:item.key, category:'all', page:null})"
 						class="dropdown-toggle" data-toggle="dropdown" role="button"
-						aria-expanded="false"> <i ng-class="item.icon"></i>
+						aria-expanded="false"> 
 							{{item.value}}
 					</a></li>
 				</ul>

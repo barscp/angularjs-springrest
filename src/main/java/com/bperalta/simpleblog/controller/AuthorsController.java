@@ -158,8 +158,9 @@ public class AuthorsController {
 		emailer.addTo(email);
 		emailer.setFrom("no_reply@"+host);
 		emailer.setSubject("Account has been created on "+domain);
-		emailer.setHtml("Your temporary password is "+newPassword
-		 		+ "<br/> Please update your profile info and change your temporary password as soon as you can :) <br/> Logon to "+domain);
+		emailer.setHtml("Hi "+author.getFirstName()+",<br/> Your temporary password is "+newPassword
+		 		+ "<br/> Please update your profile info and change your temporary password as soon as you can. Logon to "+domain+"<br/><br/>"
+		 				+ "This is a system generated email, please do not reply. :)");
 
 		 try {
 			 SendGrid.Response response = sendgrid.send(emailer);
