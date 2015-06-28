@@ -18,7 +18,7 @@ angular.module('app')
 		  ChangePasswordService.resetPassword({curPassword:$scope.currentPassword,newPassword:$scope.newPassword1}, function(data){
 			 console.log('success reset password');
 			 $scope.resetLoading = false;
-			 $scope.message="Password changed successful";
+			 $scope.message="Password changed successfully";
 			 //exit once successful
 		 }, function(error){
 			 console.log('Failed to reset password');

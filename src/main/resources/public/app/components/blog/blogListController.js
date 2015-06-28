@@ -4,7 +4,8 @@ angular.module('app')
 		      	console.log('category1:'+$stateParams.category);
 		      	console.log('page:'+$stateParams.page)
 		      	 $rootScope.blogType=$stateParams.type;
-		      	 $scope.category=$stateParams.category;
+		      	 $rootScope.blogCategory=$stateParams.category;
+		      	$scope.category=$stateParams.category;
 		      	
 		      	 $scope.loadingBlogList =true;
 		      	 
@@ -12,9 +13,13 @@ angular.module('app')
 	    		 if($stateParams.page){
 			      		 page=$stateParams.page;
 			      	 }
-			    	 if($stateParams.type =='search'){
+			    	 if($stateParams.type =='search' || $stateParams.type=='home'){
+			    		 var category = $stateParams.category;
+			    		 if($stateParams.type=='home'){
+			    			category=''; 
+			    		 }
 			    		 console.log('perform search')
-			    		 BlogService.query({type:$stateParams.type,searchKey:$stateParams.category,page:page},function(data, header){
+			    		 BlogService.query({type:'search',searchKey:category,page:page},function(data, header){
 			    			 $scope.articleList = data;
 			    			 $scope.countArticles = header('CountArticles')
 			    			 $scope.loadingBlogList =false;

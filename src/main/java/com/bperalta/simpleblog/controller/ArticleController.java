@@ -20,6 +20,10 @@ import com.bperalta.simpleblog.service.BlogService;
 import com.bperalta.simpleblog.transfer.CategoryTransfer;
 
 
+/**
+ * @author barryperalta
+ *
+ */
 @RestController
 @RequestMapping(value="articles")
 public class ArticleController {

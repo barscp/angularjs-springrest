@@ -14,6 +14,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.bperalta.simpleblog.data.entity.Article;
 import com.bperalta.simpleblog.service.BlogService;
 
+/**
+ * @author barryperalta
+ *
+ */
 @Controller
 public class SocialMediaScrapperCtrl {
 	Logger logger=LoggerFactory.getLogger(SocialMediaScrapperCtrl.class);

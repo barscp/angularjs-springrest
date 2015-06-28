@@ -8,6 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bperalta.simpleblog.data.dao.BaseDao;
 
+/**
+ * @author barryperalta
+ *
+ * @param <E>
+ * @param <I>
+ */
 public abstract class HibernateDaoImpl<E,I> implements BaseDao<E, I>{
 
 	@Autowired

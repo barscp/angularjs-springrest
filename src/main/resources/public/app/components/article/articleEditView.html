@@ -56,7 +56,7 @@
 		
 
 		<div ng-if="user">
-		<a  ui-sref="home" ng-show="article.articleId==null">cancel!</a>
+		<a  ui-sref="home" ng-show="article.articleId==null">cancel</a>
 		<a  href="#" ng-click="cancelEdit()" ng-show="article.articleId">cancel</a>
 		
 		<button type="submit" class="btn btn-primary"  ng-disabled="saveLoading">Save <span  ng-show="saveLoading==true"><i class="fa fa-refresh fa-spin"></i></span></button>

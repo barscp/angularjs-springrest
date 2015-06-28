@@ -1,25 +1,29 @@
 
-	<div class="alert alert-info" ng-if="article.isPublished=='N'" >
+<div class="alert alert-info" ng-if="article.isPublished=='N'" >
 					This article is not published.
-				</div>
-				
-<div class="panel panel-default" ng-if="article.isPublished=='Y' || (article.isPublished=='N' && user)">
+</div>
+<article>
+<div  ng-if="article.isPublished=='Y' || (article.isPublished=='N' && user)">
+<img ng-show="article.imageUrl" ng-src="{{article.imageUrl}}" class="img-responsive" alt="Responsive image"/>
+		
+<div class="container-fluid">
 
-	<img ng-show="article.imageUrl" ng-src="{{article.imageUrl}}" class="img-responsive" alt="Responsive image"/>
 	
-	<div class="panel-body">
 		<div>
 			 <h1>{{article.title}}</h1>
 		</div>
-		<div>
-			<p><small>
-		   	<a ui-sref="blog({type:article.type,category:all,page:null})">{{article.type}}</a>  | <a ui-sref="blog({type:article.type,category:article.category,page:null})">{{article.category}}</a>
+		<div class="post-preview">
+		<p class="post-meta">
+		
+		   	<a ui-sref="blog({type:article.type,category:all,page:null})"  ui-sref-active="active">{{article.type}}</a>  | <a ui-sref="blog({type:article.type,category:article.category,page:null})">{{article.category}}</a>
 			<br/>
 			  posted by <a ui-sref="author({authorId:article.author.authorId, name: removeSpace(article.author.firstName)+'-'+removeSpace(article.author.lastName)})">{{article.author.firstName}} {{article.author.lastName}}</a> on {{article.dateCreated|date:'MMM dd, yyyy'}}
-				</small></p>
+				
+		</p>
 		</div>
-		<div><p>{{article.description}}</p></div>		
-		<div  compile="article.content"></div>
+		<p>{{article.description}}	
+		<span  compile="article.content"></span>
+		</p>
 		<div ng-if="article.author.authorId == user.authorId">
 			<br/>
 			<button type="button"  ng-click="setEditMode()" class="btn btn-primary">Edit <i class="glyphicon glyphicon-edit"/></button>	
@@ -29,8 +33,6 @@
 		</div> 
 		<br/><br/>
 
-	</div>
-	
 	<div ng-if="article.isPublished=='Y'" class="panel-footer white_background">
 			<span fb-like="articleUrl"></span>
 			
@@ -47,3 +49,5 @@
 
 
 </div>
+</div>
+</article>

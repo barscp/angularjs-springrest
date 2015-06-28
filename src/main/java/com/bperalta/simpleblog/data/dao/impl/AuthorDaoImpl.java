@@ -1,8 +1,6 @@
 package com.bperalta.simpleblog.data.dao.impl;
 
-import java.math.BigInteger;
 import java.util.List;
-import java.util.Optional;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
@@ -10,9 +8,12 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bperalta.simpleblog.data.dao.AuthorDao;
-import com.bperalta.simpleblog.data.entity.Article;
 import com.bperalta.simpleblog.data.entity.Author;
 
+/**
+ * @author barryperalta
+ *
+ */
 @Repository
 @Transactional
 public class AuthorDaoImpl extends HibernateDaoImpl<Author, Long> implements AuthorDao {

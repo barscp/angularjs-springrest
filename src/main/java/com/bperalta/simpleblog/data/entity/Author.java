@@ -14,6 +14,10 @@ import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * @author barryperalta
+ *
+ */
 @Entity
 public class Author {
  

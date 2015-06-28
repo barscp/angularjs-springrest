@@ -2,7 +2,8 @@ angular.module("app")
 .directive("myCategoryTags", ['CategoriesService', function(CategoriesService){
 	return {
 		scope: {
-			blogType: "@"
+			blogType: "@",
+			isHeader:"@"
 		},
 		templateUrl: "app/shared/categories/categoriesDirectiveView.html",
 		link: function(scope,ele,attrs){

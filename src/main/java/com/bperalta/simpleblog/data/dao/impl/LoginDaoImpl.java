@@ -12,6 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bperalta.simpleblog.data.dao.LoginDao;
 import com.bperalta.simpleblog.data.entity.Login;
 
+/**
+ * @author barryperalta
+ *
+ */
 @Repository
 @Transactional
 public class LoginDaoImpl  extends HibernateDaoImpl<Login, Long>implements LoginDao{

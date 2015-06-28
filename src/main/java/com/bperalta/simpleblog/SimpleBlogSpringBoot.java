@@ -11,6 +11,10 @@ import org.springframework.context.annotation.PropertySource;
 
 import com.sendgrid.SendGrid;
 
+/**
+ * @author barryperalta
+ *
+ */
 @SpringBootApplication
 @ImportResource("classpath:/com/bperalta/simpleblog/applicationContext.xml")
 @PropertySource("classpath:/com/bperalta/simpleblog/config.properties")

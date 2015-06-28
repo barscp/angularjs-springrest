@@ -16,6 +16,10 @@ import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 
 
 
+/**
+ * @author barryperalta
+ *
+ */
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
@@ -35,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.httpBasic().authenticationEntryPoint(ce);
 		
 		http.httpBasic().and().authorizeRequests()
-				.antMatchers("/index.html","/assets/**","/app/**","/articles/**","/reset-password", "/scrapper/**","/","/socialMediaScrapper.html").permitAll()
+				.antMatchers("/google4f5be95259ddb636.html","/index.html","/assets/**","/app/**","/articles/**","/reset-password", "/scrapper/**","/","/socialMediaScrapper.html").permitAll()
 				.antMatchers(HttpMethod.GET,"/authors/*").permitAll()
 				.anyRequest().authenticated()
 				.and().logout().permitAll()

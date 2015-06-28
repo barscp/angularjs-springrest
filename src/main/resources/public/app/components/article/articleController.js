@@ -1,5 +1,5 @@
 angular.module("app")
-.controller("ArticleController",['$rootScope','$scope','$stateParams','$state','$location','UserService','PageTitle','ArticleService','AuthorService', function($rootScope,$scope,$stateParams,$state,$location,UserService,PageTitle,ArticleService,AuthorService){
+.controller("ArticleController",['$scope','$stateParams','$state','$location','UserService','PageTitle','ArticleService','AuthorService', function($scope,$stateParams,$state,$location,UserService,PageTitle,ArticleService,AuthorService){
 	
 	 console.log("stateParams:"+ $stateParams.id);
 	 $scope.editMode=false;
@@ -59,7 +59,6 @@ angular.module("app")
 			   $scope.article =data;
 			   $scope.loadingArticle = false;
 			   PageTitle.setTitle($scope.article.title)
-			   $rootScope.blogType=data.type;
 			   $scope.readyToBind=true;
 			//   $scope.articleUrl =$location.absUrl()
 			   var protocol = $location.protocol();

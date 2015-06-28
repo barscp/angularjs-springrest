@@ -26,6 +26,10 @@ import com.sendgrid.SendGrid;
 import com.sendgrid.SendGridException;
 
 
+/**
+ * @author barryperalta
+ *
+ */
 @RestController
 public class AuthenticationCtrl {
 	Logger logger=LoggerFactory.getLogger(AuthenticationCtrl.class);

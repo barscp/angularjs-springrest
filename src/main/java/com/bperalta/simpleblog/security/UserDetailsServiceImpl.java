@@ -10,6 +10,10 @@ import org.springframework.stereotype.Service;
 import com.bperalta.simpleblog.data.dao.LoginDao;
 import com.bperalta.simpleblog.data.entity.Login;
 
+/**
+ * @author barryperalta
+ *
+ */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
 	@Autowired

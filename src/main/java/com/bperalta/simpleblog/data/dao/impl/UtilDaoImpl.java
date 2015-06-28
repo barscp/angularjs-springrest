@@ -15,6 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bperalta.simpleblog.data.dao.UtilDao;
 import com.bperalta.simpleblog.transfer.CategoryTransfer;
 
+/**
+ * @author barryperalta
+ *
+ */
 @Repository
 @Transactional
 public class UtilDaoImpl implements UtilDao {

@@ -1,128 +1,161 @@
 <!doctype html>
 <html lang="en" ng-app="app">
 <head>
-  <!-- base is for removing hashbang, study further.
-  <base href="/">  -->
- <meta name="google-site-verification" content="GYCTlvgtOvH-dUqlUTNWyI6oAcNxF1b5GmcJ9-xd-Hc" />
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
- 
-  <link rel="shortcut icon" href="assets/img/bp1.png">
-  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
-  <script src="https://google-code-prettify.googlecode.com/svn/loader/prettify.js"></script>
-   <link rel="stylesheet" href="assets/css/sons-of-obsidian.css">
- 
-  <link rel="stylesheet" href="assets/libs/bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  <script src="assets/libs/bower_components/jquery/dist/jquery.min.js"></script>
+<title>Java and Javascript web development</title>
+<!-- SEARCH ENGINES -->
+		<meta name="google-site-verification" content="GYCTlvgtOvH-dUqlUTNWyI6oAcNxF1b5GmcJ9-xd-Hc" />
 
-  <script src="assets/libs/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
- 
-  <script src="assets/libs/bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="assets/libs/bower_components/angular/angular.min.js"></script>
-  <script src="assets/libs/bower_components/angular-animate/angular-animate.min.js"></script>
-  <script src="assets/libs/bower_components/angular-route/angular-route.min.js"></script>
-  <script src="assets/libs/bower_components/angular-resource/angular-resource.min.js"></script>
-  <script src="assets/libs/bower_components/angular-messages/angular-messages.min.js"></script>
-  <script src="assets/libs/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-  <script src="assets/libs/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-  
-  <script src="assets/libs/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-  <script src="assets/libs/bower_components/angulike/angulike.js"></script>
-  <script src="assets/libs/angularUtils/disqus/dirDisqus.js"></script>
+		<meta name="author" content="Barry Peralta">
+		<meta name="description" content="Notes and tutorials about web development using Java, Javascript, Spring, Hibernate, Cloud, Amazon Web Service, AWS.">
+		<link rel="canonical" href="http://barscp.com">
+		
+		<!-- FACESPACE -->
+		<meta property="og:site_name" content="Java and Javascript web development">
+		<meta property="og:url" content="http://barscp.com">
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="Java and Javascript web development">
+		<meta property="og:description" content="Notes and tutorials about web development using Java, Javascript, Spring, Hibernate, Cloud, Amazon Web Service, AWS">
+		<meta property="og:image" content="http://barscp.com/assets/img/home.jpg">
+		<meta property="fb:app_id" content="427122720793949">
+		<!--  meta property="fb:admins" content="579622216,709634581"-->
 
+		<!-- G++ -->
+		<meta itemprop="name" content="Java and Javascript web development">
+		<meta itemprop="description" content="Notes and tutorials about web development using Java, Javascript, Spring, Hibernate, Cloud, Amazon Web Service, AWS">
+		<meta itemprop="image" content="http://barscp.com/assets/img/home.jpg">
+				
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">  
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="shortcut icon" href="assets/img/bp1.png">
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+<script src="https://google-code-prettify.googlecode.com/svn/loader/prettify.js"></script>
+<link rel="stylesheet"	href="assets/libs/bower_components/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/sons-of-obsidian.css">
+<link rel="stylesheet" href="assets/css/clean-blog.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel='stylesheet' type='text/css'>
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel='stylesheet' type='text/css'>
+<script src="assets/libs/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="assets/libs/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="assets/libs/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="assets/libs/bower_components/angular/angular.min.js"></script>
+<script src="assets/libs/bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="assets/libs/bower_components/angular-route/angular-route.min.js"></script>
+<script src="assets/libs/bower_components/angular-resource/angular-resource.min.js"></script>
+<script src="assets/libs/bower_components/angular-messages/angular-messages.min.js"></script>
+<script src="assets/libs/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="assets/libs/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="assets/libs/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="assets/libs/bower_components/angulike/angulike.js"></script>
+<script src="assets/libs/angularUtils/disqus/dirDisqus.js"></script>
+<script src="app/app.module.js"></script>
+<script src="app/app.router.js"></script>
+<script src="app/components/author/AuthorService.js"></script>
+<script src="app/components/author/authorController.js"></script>
+<script src="app/components/author/authorEditController.js"></script>
+<script src="app/components/login/loginService.js"></script>
+<script src="app/components/login/userService.js"></script>
+<script src="app/components/reset-password/resetPasswordController.js"></script>
+<script src="app/components/reset-password/resetPasswordService.js"></script>
+<script src="app/components/change-password/changePasswordController.js"></script>
+<script src="app/components/change-password/changePasswordService.js"></script>
+<script src="app/components/create-author/createAuthorController.js"></script>
+<script src="app/components/create-author/createAuthorService.js"></script>
+<script src="app/components/login/loginController.js"></script>
+<script src="app/components/blog/blogService.js"></script>
+<script src="app/components/blog/blogListController.js"></script>
+<script src="app/components/article/articleService.js"></script>
+<script src="app/components/article/articleController.js"></script>
+<script src="app/components/article/articleEditController.js"></script>
+<script src="app/shared/header/headerController.js"></script>
+<script src="app/shared/articleThumbnail/articleThumbnailDirective.js"></script>
+<script src="app/shared/categories/categoriesDirective.js"></script>
+<script src="app/shared/categories/categoriesService.js"></script>
+<script src="app/shared/pagination/paginationDirective.js"></script>
+<script src="app/shared/recent/recentArticleDirective.js"></script>
+<script src="app/shared/loader/myLoadingDisplay.js"></script>
+<script src="app/shared/sidebar/sideNavController.js"></script>
+<!--  script src="app/shared/navigation/navigationDirective.js"></script-->
 
-  <script src="app/app.module.js"></script>
-  <script src="app/app.router.js"></script>
-  
-  <script src="app/components/author/AuthorService.js"></script>
-  <script src="app/components/author/authorController.js"></script>
-  
-  <script src="app/components/author/authorEditController.js"></script>
-  <script src="app/components/login/loginService.js"></script>
-  <script src="app/components/login/userService.js"></script>
-  <script src="app/components/reset-password/resetPasswordController.js"></script>
-  <script src="app/components/reset-password/resetPasswordService.js"></script>
-  <script src="app/components/change-password/changePasswordController.js"></script>
-  <script src="app/components/change-password/changePasswordService.js"></script>
+<style>
 
-  <script src="app/components/create-author/createAuthorController.js"></script>
-  <script src="app/components/create-author/createAuthorService.js"></script>
-  <script src="app/components/login/loginController.js"></script>
-  <script src="app/components/blog/blogService.js"></script>
-  <script src="app/components/blog/blogListController.js"></script>
-  
-   <script src="app/components/article/articleService.js"></script>
-   <script src="app/components/article/articleController.js"></script>
-   
-   <script src="app/components/article/articleEditController.js"></script>
-  <script src="app/shared/header/headerController.js"></script>
-  
-  <script src="app/shared/articleThumbnail/articleThumbnailDirective.js"></script>
-  <script src="app/shared/categories/categoriesDirective.js"></script>
-  <script src="app/shared/categories/categoriesService.js"></script>
-  <script src="app/shared/pagination/paginationDirective.js"></script>
- <script src="app/shared/recent/recentArticleDirective.js"></script>
-   <script src="app/shared/loader/myLoadingDisplay.js"></script>
-  <script src="app/shared/sidebar/sideNavController.js"></script>
-    <!--  script src="app/shared/navigation/navigationDirective.js"></script-->
-  
-  <style>
-  	.backlah {
-  		background-color:#777;
-  	}
-  	.white_background {
-  		background-color:#fff;
-  	}
-  	.ng-enter {
-  		transition:0.75s;
-  		opacity:0;
-  	}
-  	.ng-enter-stagger {
-  		transition-delay:0.1s;
-  	}
-  	.ng-enter-active{
-  		opacity:1;
-  	}
-  	.reduce-gutter > [class*='col-'] {
-    padding-right:5px;
-    padding-left:5px;
-    
-   }
- 
-   pre { padding: 2px; 
-   		 border: 1px solid #888;
-  		 overflow-x:scroll;
-  		 white-space: nowrap;
-  		 background-color:#000000;
+.dark-background {
+	background-color: #777;
+}
+.white_background {
+	background-color: #fff;
+}
+
+.ng-enter {
+	transition: 0.75s;
+	opacity: 0;
+}
+
+.ng-enter-stagger {
+	transition-delay: 0.1s;
+}
+
+.ng-enter-active {
+	opacity: 1;
+}
+
+.reduce-gutter>[class*='col-'] {
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+pre {
+	padding: 2px;
+	border: 1px solid #888;
+	overflow-x: scroll;
+	white-space: nowrap;
+	background-color: #000000;
+}
+@media only screen and (max-width: 768px) {
+
+    .navbar-brand-centered {
+        position: absolute;
+        left: 50%;
+        display: block;
+        width: 160px;
+        text-align: center;
+        background-color: transparent;
     }
- 
-  </style>
+    .navbar>.container .navbar-brand-centered, 
+    .navbar>.container-fluid .navbar-brand-centered {
+        margin-left: -80px;
+    }
+}
+
+</style>
 </head>
-<body  ng-cloak class="ng-cloak backlah">
-	
-<div class="container" >
+<body ng-cloak class="ng-cloak">
+	<div   ng-include="'app/shared/header/header.html'"></div>
 
-	<div class="row">
-		<div class="col-md-1 col-sm-1 hidden-xs "></div>
-		<div class="container col-md-10 col-sm-10 col-xs-12 white_background ">
-			
-			<header ng-include="'app/shared/header/header.html'"></header>
-		   	<div class="alert alert-danger" ng-if="errorMessage" >
-					{{errorMessage}}
+
+	<a name="top"></a>    
+	<main>
+	<div class="container">
+		<div class="row">
+			<div class="hidden-xs"></div>
+		
+
+				<div class="alert alert-danger" ng-if="errorMessage">
+					{{errorMessage}}</div>
+				
+				<div class="row">
+					<div  ui-view class="col-lg-8 col-md-8 col-sm-7 col-xs-12" ></div>
+					<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12"
+						ng-include="'app/shared/sidebar/sideNavView.html'"></div>
 				</div>
-		   	<div class="row">
-				<div ui-view class="col-md-8 col-sm-7 col-xs-12"></div>
-				<div class="col-md-4 col-sm-5 col-xs-12"  ng-include="'app/shared/sidebar/sideNavView.html'"></div>
-			</div>
-			<footer ng-include="'app/shared/footer.html'"></footer>
-			
+
+
 		</div>
-		<div class="col-md-1 col-sm-1 hidden-xs "></div>
 	</div>
-</div>	
-
-
+	</main>
+	<div  ng-include="'app/shared/footer.html'"></div>
+     
 </body>
 
 </html>

@@ -23,6 +23,10 @@ import com.bperalta.simpleblog.data.entity.Author;
 import com.bperalta.simpleblog.data.entity.Login;
 import com.bperalta.simpleblog.transfer.CategoryTransfer;
 
+/**
+ * @author barryperalta
+ *
+ */
 @Service
 @Transactional
 public class BlogServiceImpl implements BlogService{

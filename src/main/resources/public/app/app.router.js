@@ -4,8 +4,7 @@
 
  angular.module('app')
  .config(['$stateProvider', '$urlRouterProvider','$locationProvider',function($stateProvider, $urlRouterProvider,$locationProvider){
-	  $urlRouterProvider.otherwise("/");
-	  //
+	   $urlRouterProvider.otherwise("/menu/home/all/");
 		  $stateProvider
 	   .state('login', {
 	      url: "/login",
@@ -15,8 +14,8 @@
 	      url: "/",
 	      templateUrl: "app/shared/static_pages/homeView.html",
 	      controller: function($rootScope){
-	    	  $rootScope.blogType= null;
-		      	
+	    	  $rootScope.blogType= 'home';
+	    	  	
 	      }
 	    })
 	    .state('blog', {
@@ -41,7 +40,6 @@
 	    }).state('aboutSite', {
 		      url: "/about-this-website",
 		      templateUrl: "app/shared/static_pages/aboutThisSite.html"
-		    	  
 		}).state('changePassword',{
 			url:"/change-password",
 			templateUrl:"/app/components/change-password/changePasswordView.html",

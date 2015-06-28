@@ -8,8 +8,11 @@ import com.bperalta.simpleblog.data.entity.Author;
 //import com.bperalta.simpleblog.data.entity.Login;
 import com.bperalta.simpleblog.data.entity.Login;
 import com.bperalta.simpleblog.transfer.CategoryTransfer;
-//import org.springframework.security.core.userdetails.UserDetails;
 
+/**
+ * @author barryperalta
+ *
+ */
 public interface BlogService {
 
 	public List<Article> getArticles(Integer pageNumber, Integer pageSize);

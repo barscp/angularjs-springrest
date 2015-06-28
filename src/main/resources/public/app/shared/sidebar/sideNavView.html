@@ -1,8 +1,9 @@
 
-<div ng-controller="SideNavController">
+<div ng-controller="SideNavController" class="container-fluid">
 	<div class="panel panel-default" ng-if="user">
-
+		
 		<div class="panel-body" >
+		<h4>User Actions</h4>
 		<ul>
 			<li><a   ui-sref="author({authorId:user.authorId,name:user.name})">Update Profile</a></li>
 			<li><a ui-sref="article({id: 'new',title:null})"> Add New Article</a><br/></li>
@@ -14,10 +15,16 @@
 		
 	</div>
 
+<div class="panel panel-default" ng-show="false" >
 
-	<div my-category-tags blog-type="{{blogType}}"></div>
-
+		<div class="panel-body">
+		Ads here 
+		</div></div>
+	
 	<div recent-articles></div>
-
+	<div ng-repeat="item in menu track by item.id" ui-sref-active="active">
+			<div my-category-tags blog-type="{{item.key}}"></div>
+		</div>
+	
 </div>
 

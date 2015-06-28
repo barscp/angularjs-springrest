@@ -20,6 +20,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 //
 
+/**
+ * @author barryperalta
+ *
+ */
 @Entity
 public class Login implements UserDetails
 {

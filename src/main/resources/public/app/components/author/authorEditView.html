@@ -19,14 +19,14 @@
 		</div> 
 		<div class="form-group">
 			<label for="firstName">First Name</label>
-			<input name="firstName" type="text" class="form-control" id="firstName" ng-model="authorInfo.firstName" required > 
+			<input name="firstName" type="text" class="form-control" id="firstName" ng-model="authorInfo.firstName"  required> 
 			<div ng-if="frm.submitted" ng-messages="frm.firstName.$error">
 									<div ng-messages-include="app/components/error/errors.html"/>							  
 							  </div> 
 		</div>
 		<div class="form-group">
 			<label for="lastName">Last Name</label>
-			<input name="lastName" type="text" class="form-control" id="lastName" ng-model="authorInfo.lastName" required > 
+			<input name="lastName" type="text" class="form-control" id="lastName" ng-model="authorInfo.lastName"  > 
 			<div ng-if="frm.submitted" ng-messages="frm.lastName.$error">
 									<div ng-messages-include="app/components/error/errors.html"/>							  
 							  </div> 
@@ -34,7 +34,7 @@
 		
 		<div class="form-group">
 			<label for="websiteUrl">Website</label>
-			<input name="websiteUrl" type="url" class="form-control" id="websiteUrl" ng-model="authorInfo.websiteUrl" required > 
+			<input name="websiteUrl" type="url" class="form-control" id="websiteUrl" ng-model="authorInfo.websiteUrl" > 
 			<div ng-if="frm.submitted" ng-messages="frm.websiteUrl.$error">
 									<div ng-messages-include="app/components/error/errors.html"/>							  
 							  </div> 
@@ -44,7 +44,7 @@
 		<div ng-if="frm.submitted" ng-messages="frm.description.$error">
 									<div ng-messages-include="app/components/error/errors.html"/>							  
 							  </div> 
-		<textarea name="description" class="form-control" rows="2" class="form-control" id="description" ng-model="authorInfo.description" required></textarea> 
+		<textarea name="description" class="form-control" rows="6" class="form-control" id="description" ng-model="authorInfo.description" required></textarea> 
 		
 		</div>
 	

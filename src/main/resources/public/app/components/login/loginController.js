@@ -39,8 +39,7 @@ angular.module('app')
 				$rootScope.loginUser=true;
 				console.log(JSON.stringify(UserService.getLoginUser()));
 				$scope.loginLoading=false;
-				$state.go("home");
-				
+				$state.go("blog",{type:'home'});
 	      });
 				
 	

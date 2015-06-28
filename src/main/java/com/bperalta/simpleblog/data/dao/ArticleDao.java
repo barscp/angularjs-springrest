@@ -4,6 +4,10 @@ import java.util.List;
 
 import com.bperalta.simpleblog.data.entity.Article;
 
+/**
+ * @author barryperalta
+ *
+ */
 public interface ArticleDao extends BaseDao<Article, Long> {
 
 	public List<Article> getArticles(String type, String category, Integer pageNumber, Integer pageSize);

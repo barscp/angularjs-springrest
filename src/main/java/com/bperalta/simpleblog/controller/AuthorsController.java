@@ -32,6 +32,10 @@ import com.bperalta.simpleblog.service.BlogService;
 import com.sendgrid.SendGrid;
 import com.sendgrid.SendGridException;
 
+/**
+ * @author barryperalta
+ *
+ */
 @RestController
 @RequestMapping(value="authors")
 public class AuthorsController {

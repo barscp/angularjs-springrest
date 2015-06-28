@@ -6,36 +6,29 @@ var simpleBlogApp = angular.module('app', [ 'ngRoute', 'ngMessages',
 		'ui.router', 'ngResource', 'ngAnimate', 'ngSanitize', 'ui.bootstrap',
 		'angulike','angularUtils.directives.dirDisqus' ]);
 
-simpleBlogApp.run([ '$rootScope', '$state', 'LoginService', 'UserService',
-		function($rootScope, $state, LoginService, UserService) {
-
-
-	
-	$rootScope.menu = [ {
+simpleBlogApp.run([ '$rootScope', '$state','$route', 'LoginService', 'UserService',
+		function($rootScope, $state,$route, LoginService, UserService) {
+    $rootScope.$on("$stateChangeSuccess", function(event,currentRoute,previousRoute){
+    	window.scrollTo(0,0);
+    });
+    $rootScope.$on("$stateChangeStart", function(event,currentRoute,previousRoute){
+    	$rootScope.blogType =null;
+    });
+	$rootScope.menu = [{
 				'id':'1',
-				'key' : 'java',
+				'key' : 'Java',
 				'value' : 'Java'
-			}, {
+			},{
 				'id':'2',
-				'key' : 'javascript',
+				'key' : 'Javascript',
 				'value' : 'Javascript'
-			},
-
-			{
+			},{
 				'id':'3',
-				'key' : 'data',
-				'value' : 'Data',
-				'icon' : 'fa fa-database'
-			},
-			{
-				'id':'4',
-				'key' : 'tools',
+				'key' : 'Tools',
 				'value' : 'Tools'
-			},
-
-			{
-				'id':'5',	
-				'key' : 'misc',
+			}, {
+				'id':'4',
+				'key' : 'Misc',
 				'value' : 'Misc'
 			}
 			 ];

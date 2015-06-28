@@ -4,6 +4,10 @@ import java.util.List;
 
 import com.bperalta.simpleblog.transfer.CategoryTransfer;
 
+/**
+ * @author barryperalta
+ *
+ */
 public interface UtilDao {
 
 	

@@ -17,6 +17,10 @@ import com.bperalta.simpleblog.data.dao.ArticleDao;
 import com.bperalta.simpleblog.data.entity.Article;
 
 
+/**
+ * @author barryperalta
+ *
+ */
 @Repository
 public class ArticleDaoImpl extends HibernateDaoImpl<Article, Long> implements ArticleDao {
 
