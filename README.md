@@ -14,3 +14,11 @@ This website is implemented using the following:
 		Spring Security
 		Hibernate
 		MYSQL
+
+
+Features:
+	Login
+  	Add Author by Admin
+  	Add Articles by Author
+  	Publish Articles
+  
