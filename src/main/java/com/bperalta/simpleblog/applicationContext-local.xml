@@ -15,9 +15,9 @@
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
         destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost:3306/simple_blog_code" />
-        <property name="username" value="sb2015" />
-        <property name="password" value="sb06012015" />
+        <property name="url" value="jdbc:mysql://localhost:3306/simple-blog" />
+        <property name="username" value="root" />
+        <property name="password" value="" />
     </bean>
  
  

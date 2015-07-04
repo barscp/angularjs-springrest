@@ -1,4 +1,4 @@
-blogger-springrest is a simple blogging type web application. Implementation of this can be seen on http://barscp.com
+blogger-springrest is a simple blogging type web application. 
 
 This website is implemented using the following:
 
