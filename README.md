@@ -16,9 +16,10 @@ This website is implemented using the following:
 		MYSQL
 
 
-Features:
-	Login
-  	Add Author by Admin
-  	Add Articles by Author
-  	Publish Articles
+	Features:
+		Login/Logout
+		Add Author by Admin
+		Add/Edit Articles by Author
+		Publish Articles
+
   
