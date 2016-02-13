@@ -3,7 +3,6 @@ package com.bperalta.simpleblog.data.dao.impl;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.hibernate.Query;
 import org.hibernate.Session;

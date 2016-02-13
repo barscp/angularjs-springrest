@@ -16,8 +16,8 @@ import com.sendgrid.SendGrid;
  *
  */
 @SpringBootApplication
-@ImportResource("classpath:/com/bperalta/simpleblog/applicationContext.xml")
-@PropertySource("classpath:/com/bperalta/simpleblog/config.properties")
+@ImportResource("classpath:applicationContext.xml")
+@PropertySource("classpath:config.properties")
 public class SimpleBlogSpringBoot {
 	
 	@Value("${SEND_GRID_USER}")

@@ -4,7 +4,7 @@
 
 var simpleBlogApp = angular.module('app', [ 'ngRoute', 'ngMessages',
 		'ui.router', 'ngResource', 'ngAnimate', 'ngSanitize', 'ui.bootstrap',
-		'angulike','angularUtils.directives.dirDisqus' ]);
+		'angulike','angularUtils.directives.dirDisqus','ngFileUpload' ]);
 
 simpleBlogApp.run([ '$rootScope', '$state','$route', 'LoginService', 'UserService',
 		function($rootScope, $state,$route, LoginService, UserService) {
@@ -16,20 +16,12 @@ simpleBlogApp.run([ '$rootScope', '$state','$route', 'LoginService', 'UserServic
     });
 	$rootScope.menu = [{
 				'id':'1',
-				'key' : 'Java',
-				'value' : 'Java'
+				'key' : 'photography',
+				'value' : 'Photography'
 			},{
 				'id':'2',
-				'key' : 'Javascript',
-				'value' : 'Javascript'
-			},{
-				'id':'3',
-				'key' : 'Tools',
-				'value' : 'Tools'
-			}, {
-				'id':'4',
-				'key' : 'Misc',
-				'value' : 'Misc'
+				'key' : 'travel',
+				'value' : 'Travel'
 			}
 			 ];
 			

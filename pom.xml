@@ -1,14 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>SimpleBlog</groupId>
-  <artifactId>SimpleBlog</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>SimpleBlog</name>
+  <groupId>com.bperalta.blog</groupId>
+  <artifactId>com.bperalta.blog</artifactId>
+  <version>1.0.0</version>
+  <name>blog</name>
   <description>This application aims to create a simple blogging website that uses SPA concept.</description>
 
 
 <build>
-    <finalName>SimpleBlog</finalName>
+    <finalName>blog</finalName>
     <plugins>
        <plugin>
            <groupId>org.apache.maven.plugins</groupId>
@@ -21,7 +21,37 @@
       
     </plugins>
   </build>
-  	
+  	<profiles>
+    <profile>
+        <id>local</id>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+        </activation>
+        <build>
+            <resources>
+                <resource>
+                    <directory>config/local</directory>
+                </resource>
+                <resource>
+                    <directory>src/main/resources</directory>
+                </resource>
+            </resources>
+        </build>
+    </profile>
+    <profile>
+        <id>prod</id>
+        <build>
+            <resources>
+                <resource>
+                    <directory>config/prod</directory>
+                </resource>
+                <resource>
+                    <directory>src/main/resources</directory>
+                </resource>
+            </resources>
+        </build>
+    </profile>
+</profiles>
  <properties>
  	<spring.security.version>3.2.3.RELEASE</spring.security.version>
     <hibernate.version>4.3.5.Final</hibernate.version>
@@ -124,7 +154,11 @@
             <groupId>com.sendgrid</groupId>
             <artifactId>sendgrid-java</artifactId>
             <version>2.1.1</version>
-        </dependency>		
+        </dependency>
+     <dependency>
+     	<groupId>org.springframework.security</groupId>
+     	<artifactId>spring-security-ldap</artifactId>
+     </dependency>
     </dependencies>
  
 

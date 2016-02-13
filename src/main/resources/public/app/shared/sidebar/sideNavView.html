@@ -10,6 +10,7 @@
 			<li><a ui-sref="blog({type: 'search',category:'unpublished',page:null})"> View unpublished articles</a></li>
 		
 			<li ng-if="user.isAdmin"><a ui-sref="createAuthor"> Create Author (Admin)</a></li>
+			<li><a ui-sref="uploadFile">Upload File</a></li>
 		</ul>
 		</div>
 		
@@ -21,10 +22,10 @@
 		Ads here 
 		</div></div>
 	
-	<div recent-articles></div>
+	
 	<div ng-repeat="item in menu track by item.id" ui-sref-active="active">
 			<div my-category-tags blog-type="{{item.key}}"></div>
 		</div>
-	
+	<div recent-articles></div>
 </div>
 

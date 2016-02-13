@@ -29,8 +29,7 @@ angular.module('app')
 								$scope.loadingBlogList = false;
 						
 			    		 });
-			    	 }else
-			      	 if(!$stateParams.category || $stateParams.category == 'all'){
+			    	 }else if(!$stateParams.category || $stateParams.category == 'all'){
 			    		 console.log('category is null or all')
 			    		 BlogService.query({type:$stateParams.type,page:page},function(data, header){
 			    			 $scope.articleList = data;

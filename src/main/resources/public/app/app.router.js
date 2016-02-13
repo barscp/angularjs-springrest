@@ -52,7 +52,12 @@
 			url:"/create-author",
 			templateUrl:"/app/components/create-author/createAuthorView.html",
 			controller: "CreateAuthorController"	
+		}).state('uploadFile',{
+			url:"/upload-file",
+			templateUrl:"/app/components/upload-file/uploadFileView.html",
+			controller: "UploadFileController"	
 		});
+		  
 		  
 	 /** 
 	  * this is for removing hashbang, study further

@@ -3,17 +3,20 @@
 
 	
 	<div class="row" ng-show="imageUrl">
-		<div class="col-lg-3 col-md-3 col-sm-2 col-xs-1"></div>
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-1"></div>
 		<div
-			class="col-lg-6 col-md-6 col-sm-8 col-xs-10">
+			class="col-lg-8 col-md-8 col-sm-8 col-xs-10">
 			<a ui-sref="article({id: articleId})"> <img ng-show="imageUrl"
 				ng-src="{{imageUrl}}" class="img-responsive" alt="Responsive image" />
 			</a>
 		</div>
-		<div class="col-lg-3 col-md-3 col-sm-2 col-xs-1"></div>
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-1"></div>
 	</div>
+	<div class="row">
+	
+	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-1"></div>
+	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-10">
 	<div class="post-preview">
-
 		<a ui-sref="article({id: articleId, title:removeSpace(title)})">
 			<h2 class="post-title">{{title}}</h2>
 		
@@ -24,16 +27,17 @@
 				ui-sref-active="active">{{type}}</a> | <a
 				ui-sref="blog({type:type,category:category,page:null})">{{category}}</a>
 
-			<br />posted by <a
+			<br />
+			<!-- posted by <a
 				ui-sref="author({authorId:authorId,name:removeSpace(authorName)})">{{authorName}}</a>
-			on {{date|date:'MMM dd, yyyy'}}
+			on {{date|date:'MMM dd, yyyy'}}-->
 		</p>
 		
-
-
-
-
-
+	
+	</div>
+	</div>
+	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-1"></div>
+	
 	</div>
 	<hr>
 

@@ -1,28 +1,28 @@
 <!doctype html>
 <html lang="en" ng-app="app">
 <head>
-<title>Java and Javascript web development</title>
+<title>Barry Peralta Photography Website</title>
 <!-- SEARCH ENGINES -->
 		<meta name="google-site-verification" content="GYCTlvgtOvH-dUqlUTNWyI6oAcNxF1b5GmcJ9-xd-Hc" />
 
 		<meta name="author" content="Barry Peralta">
-		<meta name="description" content="Notes and tutorials about web development using Java, Javascript, Spring, Hibernate, Cloud, Amazon Web Service, AWS.">
-		<link rel="canonical" href="http://barscp.com">
+		<meta name="description" content="Photography, Travel, Street, Still Photo, Photo essay">
+		<link rel="canonical" href="http://imgjournal.com">
 		
 		<!-- FACESPACE -->
 		<meta property="og:site_name" content="Java and Javascript web development">
-		<meta property="og:url" content="http://barscp.com">
+		<meta property="og:url" content="http://imgjournal.com">
 		<meta property="og:type" content="website">
 		<meta property="og:title" content="Java and Javascript web development">
-		<meta property="og:description" content="Notes and tutorials about web development using Java, Javascript, Spring, Hibernate, Cloud, Amazon Web Service, AWS">
-		<meta property="og:image" content="http://barscp.com/assets/img/home.jpg">
+		<meta property="og:description" content="Photography, Travel, Street, Still Photo, Photo essay>
+		<meta property="og:image" content="http://imgjournal.com/assets/img/home.jpg">
 		<meta property="fb:app_id" content="427122720793949">
 		<!--  meta property="fb:admins" content="579622216,709634581"-->
 
 		<!-- G++ -->
 		<meta itemprop="name" content="Java and Javascript web development">
 		<meta itemprop="description" content="Notes and tutorials about web development using Java, Javascript, Spring, Hibernate, Cloud, Amazon Web Service, AWS">
-		<meta itemprop="image" content="http://barscp.com/assets/img/home.jpg">
+		<meta itemprop="image" content="http://imgjournal.com/assets/img/home.jpg">
 				
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">  
@@ -49,6 +49,8 @@
 <script src="assets/libs/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 <script src="assets/libs/bower_components/angulike/angulike.js"></script>
 <script src="assets/libs/angularUtils/disqus/dirDisqus.js"></script>
+<script src="assets/libs/bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+<script src="assets/libs/bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
 <script src="app/app.module.js"></script>
 <script src="app/app.router.js"></script>
 <script src="app/components/author/AuthorService.js"></script>
@@ -62,6 +64,9 @@
 <script src="app/components/change-password/changePasswordService.js"></script>
 <script src="app/components/create-author/createAuthorController.js"></script>
 <script src="app/components/create-author/createAuthorService.js"></script>
+
+<script src="app/components/upload-file/uploadFileController.js"></script>
+<script src="app/components/upload-file/uploadFileService.js"></script>
 <script src="app/components/login/loginController.js"></script>
 <script src="app/components/blog/blogService.js"></script>
 <script src="app/components/blog/blogListController.js"></script>
@@ -127,7 +132,31 @@ pre {
         margin-left: -80px;
     }
 }
+<!--for upload files-->
+.thumb {
+    width: 24px;
+    height: 24px;
+    float: none;
+    position: relative;
+    top: 7px;
+}
 
+form .progress {
+    line-height: 15px;
+}
+}
+
+.progress {
+    display: inline-block;
+    width: 100px;
+    border: 3px groove #CCC;
+}
+
+.progress div {
+    font-size: smaller;
+    background: orange;
+    width: 0;
+}
 </style>
 </head>
 <body ng-cloak class="ng-cloak">
@@ -145,8 +174,8 @@ pre {
 					{{errorMessage}}</div>
 				
 				<div class="row">
-					<div  ui-view class="col-lg-8 col-md-8 col-sm-7 col-xs-12" ></div>
-					<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12"
+					<div  ui-view class="col-lg-9 col-md-9 col-sm-8 col-xs-12" ></div>
+					<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12"
 						ng-include="'app/shared/sidebar/sideNavView.html'"></div>
 				</div>
 

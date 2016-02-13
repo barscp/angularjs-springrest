@@ -11,16 +11,17 @@
 				</button>
 				<a data-toggle="collapse" data-target=".in"  class="navbar-brand navbar-brand-centered" ui-sref="blog({type:'home'})"> <!--    <i class="fa fa-file-code-o"></i> DevNotes -->
 					<div  >
-						<img src="../../../assets/img/bp1.png" width="25" height="25" /> 
-						BarsCP
+						<img src="assets/img/bp1.png" width="25" height="25" /> 
+						{ blog }
 					</div>
 				</a>
 			</div>
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav text-center">
-					<li ui-sref-active="active"><a data-toggle="collapse" data-target=".in" ui-sref="blog({type:'home',category:'all'})" class="dropdown-toggle" role="button"
-						aria-expanded="false">Home</a></li>
+					<!-- li ui-sref-active="active"><a data-toggle="collapse" data-target=".in" ui-sref="blog({type:'home',category:'all'})" class="dropdown-toggle" role="button"
+						aria-expanded="false">Home</a></li-->
+						
 					<li ng-repeat="item in menu track by item.id" ui-sref-active="active"><a href="#top" data-toggle="collapse" data-target=".in"
 						ui-sref="blog({type:item.key, category:'all', page:null})"
 						class="dropdown-toggle" role="button"
@@ -65,25 +66,26 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
-                        <h1>barscp.com</h1>
-                        <span class="subheading">web application development using Java and Javascript</span>
+                        <!-- h1>barscp.com</h1>
+                        <span class="subheading">web application development using Java and Javascript</span-->
                     </div>
                 </div>
             </div>
         </div>
     </header>
     
-    
-    <div ng-show="blogType && blogType!='home'  && blogType!='search'" class="jumbotron"  >
+    <!-- 
+    <div ng-show="blogType && blogType!='home'  && blogType!='search'" class="jumbotron">
             <div class="container"><br/>
      	                  <div class="text-center">
-                        <h1>{{blogType}}</h1>
+                        <h1>[{{blogType}}]</h1>
                      </div>
                      	<div my-category-tags blog-type="{{blogType}}" is-header="true"></div>
                   
      	     </div>
    	</div>
-    <div ng-show="!blogType || blogType=='search'"  >
+   	-->
+    <div ng-show="blogType!='home' || blogType=='search'"  >
     <br/><br/><br/>
    </div>
     
