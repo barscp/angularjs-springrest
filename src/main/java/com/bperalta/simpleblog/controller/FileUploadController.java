@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.bperalta.simpleblog.utils.DateUtils;
+
+
 @Controller
 public class FileUploadController {
 	Logger logger=LoggerFactory.getLogger(FileUploadController.class);
@@ -37,8 +40,13 @@ public class FileUploadController {
         if (!file.isEmpty()) {
             try {
                 byte[] bytes = file.getBytes();
+                String currentDate= DateUtils.getCurrentDate();
+                File directory = new File("/opt/tomcat/webapps/blog/WEB-INF/classes/public/gallery/"+currentDate+"/");
+                if(!directory.exists()){
+                	directory.mkdirs();
+                }
                 BufferedOutputStream stream =
-                        new BufferedOutputStream(new FileOutputStream(new File(name)));
+                        new BufferedOutputStream(new FileOutputStream(new File(directory.getAbsolutePath(),name)));
                 stream.write(bytes);
                 stream.close();
                 return  new ResponseEntity<>(null,headers,HttpStatus.OK);

@@ -15,14 +15,18 @@ simpleBlogApp.run([ '$rootScope', '$state','$route', 'LoginService', 'UserServic
     	$rootScope.blogType =null;
     });
 	$rootScope.menu = [{
-				'id':'1',
-				'key' : 'photography',
-				'value' : 'Photography'
-			},{
-				'id':'2',
-				'key' : 'travel',
-				'value' : 'Travel'
-			}
+				        'id':'1',
+				        'key' : 'ImageJournal',
+				        'value' : 'Image Journal'
+				},{ 
+				        'id':'2',
+				        'key': 'DeveloperNotes',
+				        'value' : 'Developer Notes'
+				},{
+			        'id':'3',
+			        'key' : 'Projects',
+			        'value' : 'Projects'
+				}
 			 ];
 			
 			$rootScope.removeSpace=function(value){
