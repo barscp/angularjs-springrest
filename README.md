@@ -1,5 +1,3 @@
-A simple web application that makes use of AngularJS 1.4 for client-side and Spring for Server-side.
-
 This website is implemented using the following:
 
 ##Client Side:
