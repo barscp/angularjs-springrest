@@ -1,6 +1,6 @@
 {
   "name": "Angularjs-springrest",
-  "tagline": "Web application that uses AngularJS 1.5, Bootstrap CSS, Spring Rest, Hibernate, and Spring Bootstrap.",
+  "tagline": "Web application that uses AngularJS 1.4, Bootstrap CSS, Spring Rest, Hibernate, and Spring Bootstrap.",
   "body": "blogger-springrest is a simple blogging type web application. \r\n\r\nThis website is implemented using the following:\r\n\r\n##Client Side:\r\n\t\tAngularJs 1.4\r\n\t\tBootstrap CSS\r\n\t\tFont Awesome\r\n\t\tGoogle Code Prettify\r\n\r\n\r\n##Server Side:\r\n\t\tSpring Rest\r\n\t\tSpring Security\r\n\t\tHibernate\r\n\t\tMYSQL\r\n\r\n\r\n##Features:\r\n\t\tLogin/Logout\r\n\t\tAdd Author by Admin\r\n\t\tAdd/Edit Articles by Author\r\n\t\tPublish Articles\r\n\r\n  \r\n",
   "note": "Don't delete this file! It's used internally to help with page regeneration."
 }
