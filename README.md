@@ -1,15 +1,16 @@
-blogger-springrest is a simple blogging type web application. 
+A simple web application that makes use of AngularJS 1.4 for client-side and Spring for Server-side.
 
 This website is implemented using the following:
 
 ##Client Side:
-		AngularJs 1.4
+		AngularJS 1.4
 		Bootstrap CSS
 		Font Awesome
 		Google Code Prettify
 
 
 ##Server Side:
+		Spring Bootstrap
 		Spring Rest
 		Spring Security
 		Hibernate
