@@ -1,3 +1,12 @@
+
+##Features:
+		Login/Logout
+		Add Author by Admin
+		Add/Edit Articles by Author
+		Publish Articles
+
+
+
 This website is implemented using the following:
 
 ##Client Side:
@@ -14,11 +23,5 @@ This website is implemented using the following:
 		Hibernate
 		MYSQL
 
-
-##Features:
-		Login/Logout
-		Add Author by Admin
-		Add/Edit Articles by Author
-		Publish Articles
 
   
